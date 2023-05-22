@@ -46,7 +46,6 @@ export class Query {
 
     submit() {
         try {
-            console.log(this._toSOQL());
             return getQuery({ query: JSON.stringify({ query: this._toSOQL() }) });
         } catch (error) {
             throw new Error(`Error in Submitting Query: ${JSON.stringify(error, null, 4)}`);
