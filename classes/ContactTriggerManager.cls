@@ -1,5 +1,5 @@
 public class ContactTriggerManager extends TriggerManager {
-        private List<PersonalAccountContainer> personalAccounts;
+    private List<PersonalAccountContainer> personalAccounts;
 
     public ContactTriggerManager(TriggerState context) {
         super(context);
