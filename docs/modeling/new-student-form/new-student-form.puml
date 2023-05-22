@@ -1,0 +1,12 @@
+@startuml new-student-form
+    title New Student Form
+    left to right direction
+
+    object "New Student Form" as form
+    object "Student Record" as student
+    object "Program Enrollment \nCase Record" as case
+
+    form -> student : creates
+    form -> case : creates
+
+@enduml

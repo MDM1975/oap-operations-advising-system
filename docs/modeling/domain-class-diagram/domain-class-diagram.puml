@@ -1,0 +1,364 @@
+@startuml domain-class-diagram
+skinparam linetype ortho
+skinparam Padding 12
+skinparam ArrowThickness 1.25
+skinparam backgroundColor #EEEBDC
+
+skinparam package {
+    BackgroundColor #EEEBDC
+    BorderColor #EEEBDC
+    Style rectangle
+}
+
+skinparam class {
+    BackgroundColor LightGray
+    BorderColor LightGray
+}
+
+package {
+    class Person {
+        String lastName
+        String firstName
+        String name
+        String universityId
+        String uncwEmail
+    }
+}
+
+package {
+    class Student {
+        Boolean uncwEmployee
+        Boolean uncSystemEmployee
+        String preferredName
+    }
+}
+
+package {
+    class EducationalBackground {
+        Student student
+        String institutionName
+        String educationalType
+        String degreeType
+        Date startDate
+        Date endDate
+    }
+}
+
+package {
+    class ProfessionalExperience {
+        Student student
+        String companyName
+        String jobTitle
+        Date startDate
+        Date endDate
+        String description
+    }
+}
+
+package {
+    class StudentSuccessAdvisor {}
+}
+
+package {
+    class Instructor {}
+}
+
+package {
+    class DirectorGraduateStudentServices {}
+}
+
+package {
+    class AdministrativeAssociate{}
+}
+
+package {
+    class GraduateProgramsOperationsCoordinators{}
+}
+
+package {
+    class Case {
+        String caseNumber
+        String type
+        String status
+        String reason
+        String subject
+        String description
+        Student student
+        StudentSuccessAdvisor studentSuccessAdvisor
+        List<Object> caseComments
+    }
+}
+
+package {
+    class CaseComment {
+        Case case
+        String body
+    }
+}
+
+package {
+    class College {
+        String collegeName
+        String collegeDescription
+        numberOfPrograms: Integer
+        List<Object> programs
+    }
+}
+
+package {
+    class Program {
+        College college
+        String programName
+        String programDescription
+        List<Object> concentrations
+        List<Object> courseCatalogs
+        List<Object> programEnrollment
+    }
+}
+
+package {
+    class Concentration {
+        Program program 
+        String concentrationName
+        String concentrationDescription
+        List<Object> courses
+        List<Object> programEnrollments
+    }
+}
+
+package {
+    class SemesterSession {
+        String semesterSessionBlock
+        String semesterSessionNumber
+        List<Object> courses
+        List<Object> semesters
+    }
+}
+
+package {
+    class Semester {
+        SemesterSession semesterSession
+        String academicYear
+        Date startDate
+        Date endDate
+        List<Object> courseSections
+        List<Object> enrollmentPlannedSemesters
+        List<Object> programEnrollments
+    }
+}
+
+package {
+    class ProgramEnrollment {
+        Program program
+        Student student
+        StudentSuccessAdvisor studentSuccessAdvisor
+        CourseCatalog courseCatalog
+        Semester entrySemester
+        Semester projectedGraduationSemester
+        Semester actualGraduationSemester
+        List<Object> enrollmentPlannedSemesters
+        List<Object> appliedEnrollmentConditions
+        List<Object> academicStandings
+        List<Object> enrollmentStatusHistories
+        List<Object> concentrations
+        List<Object> enrollmentNotes
+    }
+}
+
+package {
+    class AcademicStanding {
+        ProgramEnrollment programEnrollment
+        String newAcademicStanding
+        String oldAcademicStanding
+        String changeReason
+        Date changeDate
+    }
+}
+
+package {
+    class AppliedEnrollmentCondition {
+        ProgramEnrollment programEnrollment
+        EnrollmentCondition enrollmentCondition
+        String status
+    }
+}
+
+package {
+    class EnrollmentPlannedSemester {
+        ProgramEnrollment programEnrollment
+        Semester semester
+        List<Object> courses
+    }
+}
+
+package {
+    class EnrollmentNotes {
+        ProgramEnrollment programEnrollment
+        String body
+    }
+}
+
+package {
+    class EnrollmentCondition {
+        String enrollmentConditionDescription
+        String enrollmentConditionName
+        List<Object> appliedEnrollmentConditions
+    }
+}
+
+package {
+    class CourseSection {
+        Course course
+        Semester semester
+        instructor: Instructor
+        Date courseSectionStartDate
+        Date courseSectionEndDate
+        List<Object> studentEnrollments
+    }
+}
+
+package {
+    class CourseSectionEnrollment {
+        CourseSection courseSection
+        Student student
+        String status
+    }
+}
+
+package {
+    class EnrollmentStatus {
+        String status
+        String statusDescription
+    }
+}
+
+package {
+    class EnrollmentStatusHistory {
+        ProgramEnrollment programEnrollment
+        EnrollmentStatus enrollmentStatus
+        String newEnrollmentStatus
+        String oldEnrollmentStatus
+        String changeReason
+        Date changeDate
+    }
+}
+
+package {
+    class CourseCatalog {
+        Program program 
+        String catalogYear
+        String courseCatalogName
+        String courseCatalogDescription
+        List<Object> programEnrollments
+    }
+}
+
+package {
+    class Course {
+        String coursePrefix
+        String courseNumber
+        Double courseCreditHours
+        String courseLevel
+        Double enrollmentCapacity
+        String courseDescription
+        String courseName
+        List<Object> coursePrerequisites
+        List<Object> courseCorequisites
+        List<Object> courseSections
+        List<Object> courseCatalogs
+        List<Object> concentrations
+        List<Object> enrollmentPlannedSemesters
+        List<Object> semesterSessions
+    }
+}
+
+package {
+    class Reminder {
+        String description
+        String type
+        String frequency
+        String status
+        Date dueDate
+    }
+}
+
+Person <|-- Student: is a
+Person <|-- StudentSuccessAdvisor: is a
+Person <|-- Instructor: is a
+Person <|-- DirectorGraduateStudentServices: is a
+Person <|-- AdministrativeAssociate: is a
+
+Case <|-- OperationsCase: is a
+Case <|-- ProgramEnrollmentCase: is a
+
+GraduateProgramsOperationsCoordinators "1" -- "0..*" OperationsCase: > handles
+GraduateProgramsOperationsCoordinators "1" -- "0..*" Course: > manages
+GraduateProgramsOperationsCoordinators "1" -- "0..*" CourseSection: > manages
+GraduateProgramsOperationsCoordinators "1" -- "0..*" CourseCatalog: > manages
+GraduateProgramsOperationsCoordinators "1" -- "0..*" Program: > manages
+
+Student "1" -- "0..*" CourseSection: > enrolls in
+(Student, CourseSection) .. CourseSectionEnrollment
+Student "1" -- "0..*" EducationalBackground: > has
+Student "1" -- "0..*" ProfessionalExperience: > has
+Student "0..*" -- "0..*" Program: > enrolls in
+(Student, Program) .. ProgramEnrollment
+Student "1" -- "0..*" OperationsCase: > related to
+Student "1" -- "0..*" ProgramEnrollmentCase: > related to
+
+Instructor "1" -- "0..*" CourseSection: > teaches
+
+StudentSuccessAdvisor "0..*" -- "0..*" Student: > advises
+StudentSuccessAdvisor "1" -- "0..*" ProgramEnrollment: > manages
+StudentSuccessAdvisor "1" -- "0..*" OperationsCase: > creates
+StudentSuccessAdvisor "1" -- "0..*" ProgramEnrollmentCase: > creates
+StudentSuccessAdvisor "1" -- "0..*" Reminder: > creates
+
+DirectorGraduateStudentServices "1" -- "0..*" Program: > manages
+DirectorGraduateStudentServices "1" -- "0..*" StudentSuccessAdvisor: > manages
+DirectorGraduateStudentServices "1" -- "0..*" Student: > advises
+DirectorGraduateStudentServices "1" -- "0..*" OperationsCase: > creates
+DirectorGraduateStudentServices "1" -- "0..*" ProgramEnrollmentCase: > manages
+DirectorGraduateStudentServices "1" -- "0..*" Reminder: > creates
+
+AdministrativeAssociate "1" -- "0..*" OperationsCase: > creates
+AdministrativeAssociate "1" -- "0..*" ProgramEnrollmentCase: > handles
+AdministrativeAssociate "1" -- "0..*" Reminder: > creates
+
+College "1" o-- "0..*" Program: > composed of
+
+Program "1" o-- "0..*" Concentration: > composed of
+Program "0..*" -- "0..*" Course: > offers
+(Program, Course) .. CourseCatalog
+Program "1" o-- "0..*" ProgramEnrollment: > composed of
+
+Concentration "0..*" -- "0..*" Course: > offers
+Concentration "0..*" -- "0..*" ProgramEnrollment: > associated with
+
+Course "0..*" -- "0..*" Course: > has prerequisite
+Course "0..*" -- "0..*" Course: > has corequisite
+Course "1" -- "0..*" CourseSection: > has
+Course "0..*" -- "0..*" EnrollmentPlannedSemester: > associated with
+Course "0..*" -- "0..*" SemesterSession: > offered in
+
+CourseCatalog "1" -- "0..*" ProgramEnrollment: > associated with
+
+ProgramEnrollment "0..*" -- "0..*" EnrollmentCondition: > has
+(ProgramEnrollment, EnrollmentCondition) .. AppliedEnrollmentCondition
+ProgramEnrollment "1" -- "0..*" AcademicStanding: > has
+ProgramEnrollment "0..*" -- "0..*" EnrollmentStatus: > has
+(ProgramEnrollment, EnrollmentStatus) .. EnrollmentStatusHistory
+ProgramEnrollment "0..*" -- "0..*" Semester: > plans for
+(ProgramEnrollment, Semester) .. EnrollmentPlannedSemester
+ProgramEnrollment "1" -- "0..*" EnrollmentNotes: > has
+
+SemesterSession "1" -- "0..*" Semester: > has
+
+Semester "1" -- "0..*" CourseSection: > has
+Semester "1" -- "0..*" ProgramEnrollment: < plans to graduate in
+Semester "1" -- "0..*" ProgramEnrollment: < enters in
+Semester "1" -- "0..*" ProgramEnrollment: < graduated in
+
+Case "1" -- "0..*" CaseComment
+
+@enduml

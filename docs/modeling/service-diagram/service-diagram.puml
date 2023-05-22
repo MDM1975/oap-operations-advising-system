@@ -1,0 +1,113 @@
+@startuml service-diagram
+left to right direction
+skinparam linetype ortho
+skinparam ArrowThickness 1.25
+skinparam backgroundColor #EEEBDC
+
+class BooleanAdapter {
+  + BooleanAdapter(): 
+  + adapt(Object): Boolean
+}
+
+class DataTypeAdapter {
+  + DataTypeAdapter(): 
+}
+
+class DateAdapter {
+  + DateAdapter(): 
+  + adapt(Object): Date
+}
+
+class DoubleAdapter {
+  + DoubleAdapter(): 
+  + adapt(Object): Double
+}
+
+interface IJsonAdapter << interface >> {
+  + adapt(String): Object
+}
+
+interface ISObjectBuilder << interface >> {
+  + setField(String, Object): ISObjectBuilder
+   allFields: Map<String, Object>
+}
+
+interface ITypeAdapter << interface >> {
+  + adapt(Object): Object
+}
+
+class IntegerAdapter {
+  + IntegerAdapter(): 
+  + adapt(Object): Integer
+}
+
+class JsonAdapter {
+  + JsonAdapter(): 
+}
+
+class JsonSObjectConverter {
+  + JsonSObjectConverter(String, String): 
+  + toSObject(): SObject
+  + toSObjectList(): List<SObject>
+  - adpatJsonData(Map<String, Object>): Map<String, Object>
+}
+
+class SObjectAdapter {
+  + SObjectAdapter(): 
+  + adapt(String): Map<String, Object>
+}
+
+class SObjectBuilder {
+  + SObjectBuilder(SObjectType): 
+  + reset(): void
+  + setField(String, Object): ISObjectBuilder
+  + setAllFields(Map<String, Object>): ISObjectBuilder
+   SObject: SObject
+}
+
+class SObjectListAdapter {
+  + SObjectListAdapter(): 
+  + adapt(String): List<Map<String, Object>>
+}
+
+class SoqlAdapter {
+  + SoqlAdapter(): 
+  + adapt(String): Map<String, Object>
+}
+
+class UiDataService {
+  + UiDataService(): 
+  + query(String): List<SObject>
+  + deleteRecord(Id): Boolean
+  + createRecords(String, String): List<SObject>
+  + createRecord(String, String): Map<String, Object>
+  + updateRecord(Id, String): SObject
+}
+               
+BooleanAdapter                       +-[plain]-  DataTypeAdapter                     
+BooleanAdapter                       -[dashed]-^  ITypeAdapter                        
+DateAdapter                          +-[plain]-  DataTypeAdapter                     
+DateAdapter                          -[dashed]-^  ITypeAdapter                        
+DoubleAdapter                        +-[plain]-  DataTypeAdapter                     
+DoubleAdapter                        -[dashed]-^  ITypeAdapter                           
+IJsonAdapter                         +-[plain]-  JsonAdapter                         
+ITypeAdapter                         +-[plain]-  DataTypeAdapter                     
+IntegerAdapter                       +-[plain]-  DataTypeAdapter                     
+IntegerAdapter                       -[dashed]-^  ITypeAdapter                        
+JsonSObjectConverter                 -[dashed]->  BooleanAdapter
+JsonSObjectConverter                 -[dashed]->  DateAdapter
+JsonSObjectConverter                 -[dashed]->  DoubleAdapter
+JsonSObjectConverter                 -[dashed]->  IntegerAdapter
+JsonSObjectConverter                 -[dashed]->  SObjectAdapter
+JsonSObjectConverter                 -[dashed]->  SObjectBuilder
+JsonSObjectConverter                 -[dashed]->  SObjectListAdapter
+SObjectAdapter                       -[dashed]-^  IJsonAdapter                        
+SObjectAdapter                       +-[plain]-  JsonAdapter                         
+SObjectBuilder                       -[dashed]-^  ISObjectBuilder                     
+SObjectListAdapter                   -[dashed]-^  IJsonAdapter                        
+SObjectListAdapter                   +-[plain]-  JsonAdapter                         
+SoqlAdapter                          -[dashed]-^  IJsonAdapter                        
+SoqlAdapter                          +-[plain]-  JsonAdapter
+UiDataService                        -[dashed]->  JsonSObjectConverter
+UiDataService                        -[dashed]->  SoqlAdapter
+@enduml

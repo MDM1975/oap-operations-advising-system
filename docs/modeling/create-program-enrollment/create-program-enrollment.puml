@@ -1,0 +1,58 @@
+@startuml create-program-enrollment
+|Administrative Associate|
+start
+:Open New Program Enrollment Form;
+
+|System|
+:Display New Program Enrollment Form;
+
+|Administrative Associate|
+repeat
+    :Enter Field Value; 
+
+    |System|
+    :Validate Field Value;
+    if (Invalid?) then (Yes)
+        #red :Display Error Message;
+
+        |Administrative Associate|
+        end 
+        note left
+            Field value must 
+            be corrected.
+        end note
+    else (No)
+    |System|
+        :Save Field Value;
+    endif
+
+|Administrative Associate|
+repeat while (Form Complete?) is (No)
+
+|Administrative Associate|
+:Submit Form;
+
+|System|
+:Check for Active \nProgram Enrollment;
+if (Active Program \nEnrollment Exists?) then (Yes)
+    #red :Display Error \nMessage;
+
+    |Administrative Associate|
+    end 
+    note left
+        A student cannot have 
+        multiple active 
+        enrollments.
+    end note
+
+|System|
+else (No)
+    #green :Display Success \nMessage;
+    :Create Program \nEnrollment Record;
+    :Create Program \nEnrollment Status \nRecord;
+    :Create Applied \nEnrollment Conditions \nRecord; 
+endif
+
+|Administrative Associate|
+stop
+@enduml

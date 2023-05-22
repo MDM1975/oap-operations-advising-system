@@ -1,0 +1,36 @@
+@startuml system-context-diagram
+left to right direction
+skinparam backgroundColor #EEEBDC
+
+node "OAP Operations and Advising System" as OAPS <<System>>
+node "Graduate Programs Operations Coordinators" as GPOC <<Person>>
+node "Director of Graduate Student Services" as DGS <<Person>>
+node "Student Success Advisors" as SSA <<Person>>
+node "Administrative Associate" as AA <<Person>>
+node "Associate Dean of Graduate Programs" as ADGP <<Person>>
+
+GPOC --> OAPS : "Import Student Data"
+GPOC --> OAPS : "Import Course Data"
+GPOC --> OAPS : "Import Program Data"
+GPOC --> OAPS : "Modify All Data"
+OAPS -.-> GPOC : "Export Student Data"
+OAPS -.-> GPOC : "Export Course Data"
+OAPS -.-> GPOC : "Export Program Data"
+OAPS -.-> GPOC : "View All Data"
+
+DGS --> OAPS : "Modify All Data"
+OAPS -.-> DGS : "View All Data"
+
+SSA --> OAPS : "Modify Student Data"
+OAPS -.-> SSA : "View Student Data"
+OAPS -.-> SSA : "View Course Data"
+OAPS -.-> SSA : "View Program Data"
+
+AA --> OAPS : "Modify Course Data"
+AA --> OAPS : "Modify Program Data"
+AA --> OAPS : "Modify Student Data"
+OAPS -.-> AA : "View All Data"
+
+ADGP --> OAPS : "View All Data"
+
+@enduml

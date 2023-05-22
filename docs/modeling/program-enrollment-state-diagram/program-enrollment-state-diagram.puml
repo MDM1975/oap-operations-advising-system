@@ -1,0 +1,13 @@
+@startuml program-enrollment-state-diagram
+    left to right direction
+    [*] -> ADMITTED : createStudent()
+    ADMITTED --> ENROLLED : createProgramEnrollment()
+    ADMITTED --> DEFERRED : defer()
+    DEFERRED --> ENROLLED : createProgramEnrollment()
+    ENROLLED --> WITHDRAWN : withdraw()
+    ENROLLED --> LOA : leaveOfAbsence()
+    ENROLLED --> GRADUATED : graduate()
+    LOA  --> ENROLLED : reennroll()
+    LOA  --> WITHDRAWN : withdraw()
+    WITHDRAWN  --> ADMITTED : reapply()
+@enduml

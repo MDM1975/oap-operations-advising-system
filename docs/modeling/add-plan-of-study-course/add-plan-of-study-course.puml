@@ -1,0 +1,27 @@
+@startuml add-plan-of-study-course
+|Student Success Advisor|
+start
+:Navigate to Student \nDetail Page;
+
+|System|
+:Display Student \nDetail Page;
+
+|Student Success Advisor|
+:Open Active \nEnrollment Section;
+:Click Add Semester \nOn Plan of Study;
+
+|System|
+:Get Courses From \nProgram Course Offering;
+:Display Course \nOptions Modal;
+
+|Student Success Advisor|
+:Select Course; 
+
+|System|
+:Create Planned \nCourse Record;
+#green :Display Success \nMessage;
+:Display Planned \nCourse On \nPlan of Study;
+
+|Student Success Advisor|
+stop 
+@enduml

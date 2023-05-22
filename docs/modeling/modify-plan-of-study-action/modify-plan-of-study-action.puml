@@ -1,0 +1,12 @@
+@startuml modify-plan-of-study-action
+    title Modify Plan of Study Action
+    left to right direction
+
+    object "Modify Plan of Study \nAction" as MPOS
+    object "Planned Enrollment \nSemester Record" as PES
+    object "Planned Enrollment \nCourse Record" as PEC
+
+    MPOS --> PES : Creates/Deletes
+    MPOS --> PEC : Creates/Deletes
+
+@enduml

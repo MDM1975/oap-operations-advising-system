@@ -1,0 +1,56 @@
+@startuml create-student
+
+|Director, Graduate Student Services|
+start
+:Open New Student Form;
+
+|System|
+:Display New Student Form;
+
+|Director, Graduate Student Services|
+repeat
+    :Enter Field Value;
+    |System|
+    :Validate Field Value;
+    if (Invalid?) then (Yes)
+        #red :Display Error \nMessage;
+
+        |Director, Graduate Student Services|
+        end 
+        note left
+            Field value 
+            must be 
+            corrected.
+        end note
+
+        else (no)
+        |System|
+        :Save Field Value;
+    endif
+    |Director, Graduate Student Services|
+repeat while (Form Complete?) is (No)
+:Submit Form;
+
+|System|
+:Check for Duplicate Student;
+if (Duplicate Student Exists?) then (Yes)
+    #red :Display Error \nMessage;
+    :Display Link to \nDuplicate Student;
+    |Director, Graduate Student Services|
+    end
+    note left
+        Student must 
+        be unique to
+        create a new
+        record. 
+    end note
+    else (No)
+    |System|
+    #green :Display Success \nMessage;
+    :Create Student \nRecord;
+    :Create Program \nEnrollment Case;
+endif
+
+|Director, Graduate Student Services|
+stop 
+@enduml

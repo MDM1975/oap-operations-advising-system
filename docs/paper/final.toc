@@ -1,0 +1,86 @@
+\contentsline {section}{\numberline {1}Introduction}{6}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Background and Context}{6}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Problem Statement}{6}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}Proposed System}{7}{subsection.1.3}%
+\contentsline {subsubsection}{\numberline {1.3.1}System Capabilities}{8}{subsubsection.1.3.1}%
+\contentsline {subsubsection}{\numberline {1.3.2}Benefits and Value}{8}{subsubsection.1.3.2}%
+\contentsline {subsection}{\numberline {1.4}Research Objectives and Questions}{9}{subsection.1.4}%
+\contentsline {section}{\numberline {2}Project Overview}{10}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Project Objectives}{10}{subsection.2.1}%
+\contentsline {subsubsection}{\numberline {2.1.1}Success Criteria}{11}{subsubsection.2.1.1}%
+\contentsline {subsection}{\numberline {2.2}Project Scope and Boundaries}{12}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Approval Process and Governance}{13}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Explored Technologies and Alternatives}{14}{subsection.2.4}%
+\contentsline {subsubsection}{\numberline {2.4.1}Microsoft PowerApps}{14}{subsubsection.2.4.1}%
+\contentsline {subsubsection}{\numberline {2.4.2}Locally Hosted Web Application}{15}{subsubsection.2.4.2}%
+\contentsline {subsubsection}{\numberline {2.4.3}Salesforce Lightning Platform}{16}{subsubsection.2.4.3}%
+\contentsline {subsection}{\numberline {2.5}Selected Technology}{16}{subsection.2.5}%
+\contentsline {subsection}{\numberline {2.6}Project Phases and Milestones}{17}{subsection.2.6}%
+\contentsline {subsubsection}{\numberline {2.6.1}Project Schedule}{18}{subsubsection.2.6.1}%
+\contentsline {subsection}{\numberline {2.7}Project Deliverables}{19}{subsection.2.7}%
+\contentsline {subsubsection}{\numberline {2.7.1}Functional System}{19}{subsubsection.2.7.1}%
+\contentsline {subsubsection}{\numberline {2.7.2}User Manual and Technical Documentation}{20}{subsubsection.2.7.2}%
+\contentsline {subsubsection}{\numberline {2.7.3}Hands-on Training}{21}{subsubsection.2.7.3}%
+\contentsline {section}{\numberline {3}Project Management}{21}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Project Management Methodology}{21}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Kanban Board and Visualizing the Workflow}{23}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Managing Project Goals and Features}{24}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}Project Management Tools}{25}{subsection.3.4}%
+\contentsline {section}{\numberline {4}Systems Analysis}{26}{section.4}%
+\contentsline {subsection}{\numberline {4.1}System Analysis Overview}{26}{subsection.4.1}%
+\contentsline {subsubsection}{\numberline {4.1.1}System Context Diagram}{27}{subsubsection.4.1.1}%
+\contentsline {subsection}{\numberline {4.2}Stakeholder Analysis}{28}{subsection.4.2}%
+\contentsline {subsubsection}{\numberline {4.2.1}Roles and Responsibilities}{28}{subsubsection.4.2.1}%
+\contentsline {subsubsection}{\numberline {4.2.2}Level of Involvement}{29}{subsubsection.4.2.2}%
+\contentsline {subsection}{\numberline {4.3}Evaluation of Current System}{30}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.4}System Requirements}{31}{subsection.4.4}%
+\contentsline {subsubsection}{\numberline {4.4.1}Functional Requirements}{31}{subsubsection.4.4.1}%
+\contentsline {subsubsection}{\numberline {4.4.2}Non-Functional Requirements}{33}{subsubsection.4.4.2}%
+\contentsline {subsubsection}{\numberline {4.4.3}User Requirements Gathering}{34}{subsubsection.4.4.3}%
+\contentsline {subsubsection}{\numberline {4.4.4}Uncovering User Goals through Stakeholder Interviews}{34}{subsubsection.4.4.4}%
+\contentsline {subsubsection}{\numberline {4.4.5}Use Case and User Story Development}{35}{subsubsection.4.4.5}%
+\contentsline {subsubsection}{\numberline {4.4.6}Requirements Prioritization}{37}{subsubsection.4.4.6}%
+\contentsline {subsection}{\numberline {4.5}Domain Analysis and Modeling}{39}{subsection.4.5}%
+\contentsline {subsubsection}{\numberline {4.5.1}Identifying Entities and Relationships}{39}{subsubsection.4.5.1}%
+\contentsline {subsubsection}{\numberline {4.5.2}Entity-Relationship Diagram and Domain Class Model}{40}{subsubsection.4.5.2}%
+\contentsline {subsection}{\numberline {4.6}Use Case Analysis and Modeling}{41}{subsection.4.6}%
+\contentsline {subsubsection}{\numberline {4.6.1}Activity Diagrams}{42}{subsubsection.4.6.1}%
+\contentsline {subsubsection}{\numberline {4.6.2}Use Case Descriptions}{44}{subsubsection.4.6.2}%
+\contentsline {section}{\numberline {5}Systems Design}{49}{section.5}%
+\contentsline {subsection}{\numberline {5.1}System Architecture}{50}{subsection.5.1}%
+\contentsline {subsubsection}{\numberline {5.1.1}Architectural Patterns}{50}{subsubsection.5.1.1}%
+\contentsline {subsection}{\numberline {5.2}Component Decomposition}{52}{subsection.5.2}%
+\contentsline {subsubsection}{\numberline {5.2.1}SObjects}{52}{subsubsection.5.2.1}%
+\contentsline {subsubsection}{\numberline {5.2.2}Apex Classes}{53}{subsubsection.5.2.2}%
+\contentsline {subsubsection}{\numberline {5.2.3}Apex Triggers}{53}{subsubsection.5.2.3}%
+\contentsline {subsubsection}{\numberline {5.2.4}SOQL and SOSL}{55}{subsubsection.5.2.4}%
+\contentsline {subsubsection}{\numberline {5.2.5}Lightning Web Components}{55}{subsubsection.5.2.5}%
+\contentsline {subsubsection}{\numberline {5.2.6}Lightning Design System}{56}{subsubsection.5.2.6}%
+\contentsline {subsection}{\numberline {5.3}Access Control and Security}{56}{subsection.5.3}%
+\contentsline {subsubsection}{\numberline {5.3.1}User Roles and Permissions}{56}{subsubsection.5.3.1}%
+\contentsline {subsection}{\numberline {5.4}User Interface Design}{58}{subsection.5.4}%
+\contentsline {subsubsection}{\numberline {5.4.1}User Interface Components and Layouts}{58}{subsubsection.5.4.1}%
+\contentsline {subsubsection}{\numberline {5.4.2}Operations Console and Portal Overview}{58}{subsubsection.5.4.2}%
+\contentsline {subsubsection}{\numberline {5.4.3}Navigation and User Interface Components}{59}{subsubsection.5.4.3}%
+\contentsline {section}{\numberline {6}Software Engineering and Implementation}{59}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Design Patterns and Principles}{59}{subsection.6.1}%
+\contentsline {subsubsection}{\numberline {6.1.1}Facade}{60}{subsubsection.6.1.1}%
+\contentsline {subsubsection}{\numberline {6.1.2}Template Method}{63}{subsubsection.6.1.2}%
+\contentsline {subsubsection}{\numberline {6.1.3}Command Pattern}{67}{subsubsection.6.1.3}%
+\contentsline {subsubsection}{\numberline {6.1.4}Builder Pattern}{70}{subsubsection.6.1.4}%
+\contentsline {subsection}{\numberline {6.2}Data Migration and Transformation}{73}{subsection.6.2}%
+\contentsline {subsubsection}{\numberline {6.2.1}Migration Scripts}{74}{subsubsection.6.2.1}%
+\contentsline {subsection}{\numberline {6.3}Quality Assurance and Testing}{82}{subsection.6.3}%
+\contentsline {subsubsection}{\numberline {6.3.1}Unit Testing}{83}{subsubsection.6.3.1}%
+\contentsline {subsection}{\numberline {6.4}Reports and Dashboards}{92}{subsection.6.4}%
+\contentsline {subsubsection}{\numberline {6.4.1}Course Planning Dashboard, User Stories, and Reports}{93}{subsubsection.6.4.1}%
+\contentsline {section}{\numberline {7}Lessons Learned and Future Work}{95}{section.7}%
+\contentsline {subsection}{\numberline {7.1}Lessons Learned}{95}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.2}Future Work}{96}{subsection.7.2}%
+\contentsline {section}{Appendices}{99}{section*.13}%
+\contentsline {section}{\numberline {A}Appendix A: Entity Relationship Diagram}{99}{appendix.1.A}%
+\contentsline {section}{\numberline {B}Appendix B: Domain Class Diagram}{103}{appendix.1.B}%
+\contentsline {section}{\numberline {C}Appendix C: Data Dictionary}{104}{appendix.1.C}%
+\contentsline {section}{\numberline {D}Appendix E: Epics and User Stories}{126}{appendix.1.D}%
+\contentsline {section}{\numberline {E}Class Subsystem Diagrams}{140}{appendix.1.E}%
+\contentsline {section}{\numberline {F}Screenshots of the Application}{142}{appendix.1.F}%

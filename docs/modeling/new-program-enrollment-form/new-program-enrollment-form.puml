@@ -1,0 +1,20 @@
+@startuml new-program-enrollment-form
+    title New Program Enrollment Form
+    left to right direction
+
+    object "New Program Enrollment Form" as NPEF
+    object "Program Enrollment \nRecord" as PE
+    object "Applied Enrollment \nCondition Record" as AEC
+    object "Program Enrollment \nStatus Record" as PES
+    object "Student Success \nAdvisor Field" as SSA
+    object "Entry Semester Field" as ES
+    object "Projected Graduation \nSemester Field" as PGS
+
+    NPEF --> PE : Creates
+    NPEF --> AEC : Creates
+    NPEF --> PES : Creates
+    NPEF --> SSA : Sets
+    NPEF --> ES : Sets
+    NPEF --> PGS : Sets
+
+@enduml

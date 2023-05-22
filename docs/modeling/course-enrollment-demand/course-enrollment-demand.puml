@@ -1,0 +1,29 @@
+@startuml course-enrollment-demand
+skinparam linetype ortho
+skinparam Padding 18
+skinparam ArrowThickness 1.25
+skinparam backgroundColor #EEEBDC
+
+node ProgramEnrollments as "Program Enrollment"
+node EnrollmentPlannedSemesters as "Enrollment Planned Semester"
+node EnrollmentPlannedCourses as "Enrollment Planned Course"
+
+ProgramEnrollments --> EnrollmentPlannedSemesters: Inner Joins
+EnrollmentPlannedSemesters --> EnrollmentPlannedCourses: Inner Joins
+
+note top of ProgramEnrollments
+The Program Enrollments table contains a record 
+for each student who has enrolled in a program.
+end note
+
+note top of EnrollmentPlannedSemesters
+The Enrollment Planned Semesters table contains a record
+for each semester in which a student plans to enroll.
+end note
+
+note top of EnrollmentPlannedCourses
+The Enrollment Planned Courses table contains a record
+for each course in which a student plans to enroll during
+a planned semester.
+end note
+@enduml

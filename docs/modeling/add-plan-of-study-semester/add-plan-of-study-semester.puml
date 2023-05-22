@@ -1,0 +1,27 @@
+@startuml add-plan-of-study-semester
+|Student Success Advisor|
+start
+:Navigate to Student \nDetail Page;
+
+|System|
+:Display Student \nDetail Page;
+
+|Student Success Advisor|
+:Open Active \nEnrollment Section;
+:Click Add Semester \nOn Plan of Study;
+
+|System|
+:Get Upcoming \nSemesters;
+:Display Options \nSemester Dropdown;
+
+|Student Success Advisor|
+:Select Semester;
+
+|System|
+:Create Planned \nSemester Record;
+#green :Display Success \nMessage;
+:Display Planned \nSemester On \nPlan of Study;
+
+|Student Success Advisor|
+stop 
+@enduml

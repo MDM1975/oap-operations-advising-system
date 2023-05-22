@@ -1,0 +1,183 @@
+@startuml trigger-diagram
+left to right direction
+skinparam linetype ortho
+skinparam ArrowThickness 1.25
+skinparam backgroundColor #EEEBDC
+
+class AcademicStandingHandler {
+  + AcademicStandingHandler():
+  + execute(Record): Academic_Standing_History__c
+}
+
+class AcademicStandingHistoryDirector {
+  + AcademicStandingHistoryDirector(SObjectBuilder): 
+  + buildAcademicStandingHistory(Id, String, String): void
+   academicStandingHistory: Academic_Standing_History__c
+}
+
+class AccountDirector {
+  + AccountDirector(SObjectBuilder): 
+  + buildPersonalAccount(Contact): void
+   account: Account
+}
+
+class CaseAssignmentNotificationHandler {
+  + CaseAssignmentNotificationHandler(): 
+  + execute(Record): SingleEmailMessage
+}
+
+class CaseDirector {
+  + CaseDirector(SObjectBuilder): 
+  + buildProgramEnrollmentCase(Contact): void
+   case: Case
+}
+
+class CaseTriggerManager {
+  + CaseTriggerManager(TriggerContext): 
+  ~ manageAfterInsert(RecordIterator): void
+}
+
+class ContactTriggerManager {
+  + ContactTriggerManager(TriggerContext): 
+  ~ manageBeforeInsert(RecordIterator): void
+  ~ manageAfterInsert(RecordIterator): void
+}
+
+class CourseCatalogTriggerManager {
+  + CourseCatalogTriggerManager(TriggerContext): 
+  ~ manageAfterInsert(RecordIterator): void
+}
+
+
+class EnrollmentStatusHistoryDirector {
+  + EnrollmentStatusHistoryDirector(SObjectBuilder): 
+  + buildEnrollmentStatusHistory(Id, String, String): void
+   enrollmentStatusHistory: Enrollment_Status_History__c
+}
+
+interface ISObjectBuilder << interface >> {
+  + setField(String, Object): ISObjectBuilder
+   allFields: Map<String, Object>
+}
+
+interface ITriggerHandler << interface >> {
+  + execute(Record): Object
+}
+
+class PersonalAccountContainer {
+  + PersonalAccountContainer(Account, Contact): 
+  + updateContactAccount(): void
+}
+
+class PersonalAccountHandler {
+  + PersonalAccountHandler(): 
+  + execute(Record): Account
+}
+
+class ProgramEnrollmentCaseHandler {
+  + ProgramEnrollmentCaseHandler(): 
+  + execute(Record): Case
+}
+
+class ProgramEnrollmentSetupHandler {
+  + ProgramEnrollmentSetupHandler(): 
+  + getRelatedCase(Program_Enrollment__c): Case
+  + execute(Record): Map<String, SObject>
+  - getCourseCatalogId(Program_Enrollment__c): Id
+}
+
+class ProgramEnrollmentTriggerManager {
+  + ProgramEnrollmentTriggerManager(TriggerContext): 
+  ~ manageBeforeInsert(RecordIterator): void
+  ~ manageAfterUpdate(RecordIterator): void
+}
+
+class Record {
+  + Record(SObject, SObject): 
+  + isNotNull(SObjectField): Boolean
+  + isChanged(SObjectField): Boolean
+  + isRecordType(SObjectType, String): Boolean
+  + isNull(SObjectField): Boolean
+   record: SObject
+   recordPrior: SObject
+}
+
+class RecordIterator {
+  + RecordIterator(TriggerContext): 
+  + next(): Record
+  - getNext(Integer): Record
+  + toList(): List<Record>
+  + hasNext(): Boolean
+}
+
+class TriggerContext {
+  + TriggerContext(TriggerOperation, List<SObject>, List<SObject>): 
+   beforeInsert: boolean
+   afterUpdate: boolean
+   afterDelete: boolean
+   afterInsert: boolean
+   beforeDelete: boolean
+   beforeUpdate: boolean
+}
+
+class TriggerManager {
+  + TriggerManager(TriggerContext): 
+  + addRelatedRecord(SObject): void
+  + sendEmails(): void
+  + manage(): void
+  ~ manageBeforeUpdate(RecordIterator): void
+  ~ manageAfterInsert(RecordIterator): void
+  ~ manageAfterUpdate(RecordIterator): void
+  ~ manageBeforeInsert(RecordIterator): void
+  + saveRecords(): void
+  + addEmail(SingleEmailMessage): void
+   relatedRecords: List<SObject>
+}
+
+class UserSetupHandler {
+  + UserSetupHandler(): 
+  + execute(Record): User
+}
+
+class UserTriggerManager {
+  + UserTriggerManager(TriggerContext): 
+  ~ manageBeforeInsert(RecordIterator): void
+}
+
+SObjectBuilder -[dashed]-^ ISObjectBuilder
+AcademicStandingHandler              -[dashed]->  AcademicStandingHistoryDirector
+AcademicStandingHandler              -[dashed]-^  ITriggerHandler                     
+AcademicStandingHandler              -[dashed]->  SObjectBuilder
+AcademicStandingHistoryDirector     "1" *-[plain]-> SObjectBuilder                      
+AccountDirector                     "1" *-[plain]-> SObjectBuilder      
+CaseAssignmentNotificationHandler    -[dashed]-^  ITriggerHandler
+CaseDirector                        "1" *-[plain]-> SObjectBuilder                      
+CaseTriggerManager                   -[dashed]->  CaseAssignmentNotificationHandler
+CaseTriggerManager                   -[plain]-^  TriggerManager
+ContactTriggerManager                -[dashed]->  PersonalAccountContainer
+ContactTriggerManager                -[dashed]->  PersonalAccountHandler
+ContactTriggerManager                -[dashed]->  ProgramEnrollmentCaseHandler
+ContactTriggerManager                -[plain]-^  TriggerManager
+CourseCatalogTriggerManager          -[dashed]->  RecordIterator
+CourseCatalogTriggerManager          -[plain]-^  TriggerManager                       
+EnrollmentStatusHistoryDirector     "1" *-[plain]-> SObjectBuilder                         
+PersonalAccountContainer             +-[plain]-  ContactTriggerManager               
+PersonalAccountHandler               -[dashed]->  AccountDirector
+PersonalAccountHandler               -[dashed]-^  ITriggerHandler                     
+PersonalAccountHandler               -[dashed]->  SObjectBuilder
+ProgramEnrollmentCaseHandler         -[dashed]->  CaseDirector
+ProgramEnrollmentCaseHandler         -[dashed]-^  ITriggerHandler                     
+ProgramEnrollmentCaseHandler         -[dashed]->  SObjectBuilder
+ProgramEnrollmentSetupHandler        -[dashed]-^  ITriggerHandler                     
+ProgramEnrollmentTriggerManager      -[dashed]->  AcademicStandingHandler
+ProgramEnrollmentTriggerManager      -[dashed]->  ProgramEnrollmentSetupHandler
+ProgramEnrollmentTriggerManager      -[plain]-^  TriggerManager                      
+Record                               +-[plain]-  TriggerContext                      
+RecordIterator                       -[dashed]->  Record
+RecordIterator                       +-[plain]-  TriggerContext                      
+TriggerManager                       -[dashed]->  RecordIterator
+TriggerManager                      "1" *-[plain]-> TriggerContext                      
+UserSetupHandler                     -[dashed]-^  ITriggerHandler                     
+UserTriggerManager                   -[plain]-^  TriggerManager                      
+UserTriggerManager                   -[dashed]->  UserSetupHandler
+@enduml

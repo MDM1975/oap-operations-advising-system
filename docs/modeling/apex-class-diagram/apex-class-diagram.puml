@@ -1,0 +1,294 @@
+@startuml apex-class-diagram
+!theme plain
+top to bottom direction
+skinparam linetype ortho
+
+class AcademicStandingHandler {
+  + AcademicStandingHandler(): 
+  + execute(Record): Academic_Standing_History__c
+}
+
+class AcademicStandingHistoryDirector {
+  + AcademicStandingHistoryDirector(SObjectBuilder): 
+  + buildAcademicStandingHistory(Id, String, String): void
+   academicStandingHistory: Academic_Standing_History__c
+}
+
+class AccountDirector {
+  + AccountDirector(SObjectBuilder): 
+  + buildPersonalAccount(Contact): void
+   account: Account
+}
+
+class BooleanAdapter {
+  + BooleanAdapter(): 
+  + adapt(Object): Boolean
+}
+
+class CaseAssignmentNotificationHandler {
+  + CaseAssignmentNotificationHandler(): 
+  + execute(Record): SingleEmailMessage
+}
+
+class CaseDirector {
+  + CaseDirector(SObjectBuilder): 
+  + buildProgramEnrollmentCase(Contact): void
+   case: Case
+}
+
+class CaseTriggerManager {
+  + CaseTriggerManager(TriggerContext): 
+  ~ manageAfterInsert(RecordIterator): void
+}
+
+class ContactTriggerManager {
+  + ContactTriggerManager(TriggerContext): 
+  ~ manageBeforeInsert(RecordIterator): void
+  ~ manageAfterInsert(RecordIterator): void
+}
+
+class CourseCatalogClone {
+  + CourseCatalogClone(Id): 
+  - courseCatalog: Course_Catalog__c
+  - getCourseCatalog(Id): Course_Catalog__c
+   courseCatalog: Course_Catalog__c
+}
+
+class CourseCatalogTriggerManager {
+  + CourseCatalogTriggerManager(TriggerContext): 
+  ~ manageAfterInsert(RecordIterator): void
+}
+
+class DataTypeAdapter {
+  + DataTypeAdapter(): 
+}
+
+class DateAdapter {
+  + DateAdapter(): 
+  + adapt(Object): Date
+}
+
+class DoubleAdapter {
+  + DoubleAdapter(): 
+  + adapt(Object): Double
+}
+
+class EnrollmentStatusHistoryDirector {
+  + EnrollmentStatusHistoryDirector(SObjectBuilder): 
+  + buildEnrollmentStatusHistory(Id, String, String): void
+   enrollmentStatusHistory: Enrollment_Status_History__c
+}
+
+interface IJsonAdapter << interface >> {
+  + adapt(String): Object
+}
+
+interface ISObjectBuilder << interface >> {
+  + setField(String, Object): ISObjectBuilder
+   allFields: Map<String, Object>
+}
+
+interface ITriggerHandler << interface >> {
+  + execute(Record): Object
+}
+
+interface ITypeAdapter << interface >> {
+  + adapt(Object): Object
+}
+
+class IntegerAdapter {
+  + IntegerAdapter(): 
+  + adapt(Object): Integer
+}
+
+class JsonAdapter {
+  + JsonAdapter(): 
+}
+
+class JsonSObjectConverter {
+  + JsonSObjectConverter(String, String): 
+  + toSObject(): SObject
+  + toSObjectList(): List<SObject>
+  - adpatJsonData(Map<String, Object>): Map<String, Object>
+}
+
+class PersonalAccountContainer {
+  + PersonalAccountContainer(Account, Contact): 
+  + updateContactAccount(): void
+}
+
+class PersonalAccountHandler {
+  + PersonalAccountHandler(): 
+  + execute(Record): Account
+}
+
+class ProgramEnrollmentCaseHandler {
+  + ProgramEnrollmentCaseHandler(): 
+  + execute(Record): Case
+}
+
+class ProgramEnrollmentSetupHandler {
+  + ProgramEnrollmentSetupHandler(): 
+  + getRelatedCase(Program_Enrollment__c): Case
+  + execute(Record): Map<String, SObject>
+  - getCourseCatalogId(Program_Enrollment__c): Id
+}
+
+class ProgramEnrollmentTriggerManager {
+  + ProgramEnrollmentTriggerManager(TriggerContext): 
+  ~ manageBeforeInsert(RecordIterator): void
+  ~ manageAfterUpdate(RecordIterator): void
+}
+
+class Record {
+  + Record(SObject, SObject): 
+  + isNotNull(SObjectField): Boolean
+  + isChanged(SObjectField): Boolean
+  + isRecordType(SObjectType, String): Boolean
+  + isNull(SObjectField): Boolean
+   record: SObject
+   recordPrior: SObject
+}
+
+class RecordIterator {
+  + RecordIterator(TriggerContext): 
+  + next(): Record
+  - getNext(Integer): Record
+  + toList(): List<Record>
+  + hasNext(): Boolean
+}
+
+class SObjectAdapter {
+  + SObjectAdapter(): 
+  + adapt(String): Map<String, Object>
+}
+
+class SObjectBuilder {
+  + SObjectBuilder(SObjectType): 
+  + reset(): void
+  + setField(String, Object): ISObjectBuilder
+  + setAllFields(Map<String, Object>): ISObjectBuilder
+   SObject: SObject
+}
+
+class SObjectListAdapter {
+  + SObjectListAdapter(): 
+  + adapt(String): List<Map<String, Object>>
+}
+
+class SoqlAdapter {
+  + SoqlAdapter(): 
+  + adapt(String): Map<String, Object>
+}
+
+class TriggerContext {
+  + TriggerContext(TriggerOperation, List<SObject>, List<SObject>): 
+   beforeInsert: boolean
+   afterUpdate: boolean
+   afterDelete: boolean
+   afterInsert: boolean
+   beforeDelete: boolean
+   beforeUpdate: boolean
+}
+
+class TriggerManager {
+  + TriggerManager(TriggerContext): 
+  + addRelatedRecord(SObject): void
+  + sendEmails(): void
+  + manage(): void
+  ~ manageBeforeUpdate(RecordIterator): void
+  ~ manageAfterInsert(RecordIterator): void
+  ~ manageAfterUpdate(RecordIterator): void
+  ~ manageBeforeInsert(RecordIterator): void
+  + saveRecords(): void
+  + addEmail(SingleEmailMessage): void
+   relatedRecords: List<SObject>
+}
+
+class UiDataService {
+  + UiDataService(): 
+  + query(String): List<SObject>
+  + deleteRecord(Id): Boolean
+  + createRecords(String, String): List<SObject>
+  + createRecord(String, String): Map<String, Object>
+  + updateRecord(Id, String): SObject
+}
+
+class UserSetupHandler {
+  + UserSetupHandler(): 
+  + execute(Record): User
+}
+
+class UserTriggerManager {
+  + UserTriggerManager(TriggerContext): 
+  ~ manageBeforeInsert(RecordIterator): void
+}
+
+AcademicStandingHandler              -[#595959,dashed]->  AcademicStandingHistoryDirector     : "«create»"
+AcademicStandingHandler              -[#008200,dashed]-^  ITriggerHandler                     
+AcademicStandingHandler              -[#595959,dashed]->  SObjectBuilder                      : "«create»"
+AcademicStandingHistoryDirector     "1" *-[#595959,plain]-> "builder\n1" SObjectBuilder                      
+AccountDirector                     "1" *-[#595959,plain]-> "builder\n1" SObjectBuilder                      
+BooleanAdapter                       +-[#820000,plain]-  DataTypeAdapter                     
+BooleanAdapter                       -[#008200,dashed]-^  ITypeAdapter                        
+CaseAssignmentNotificationHandler    -[#008200,dashed]-^  ITriggerHandler                     
+CaseDirector                        "1" *-[#595959,plain]-> "builder\n1" SObjectBuilder                      
+CaseTriggerManager                   -[#595959,dashed]->  CaseAssignmentNotificationHandler   : "«create»"
+CaseTriggerManager                   -[#000082,plain]-^  TriggerManager                      
+ContactTriggerManager                -[#595959,dashed]->  PersonalAccountContainer            : "«create»"
+ContactTriggerManager                -[#595959,dashed]->  PersonalAccountHandler              : "«create»"
+ContactTriggerManager                -[#595959,dashed]->  ProgramEnrollmentCaseHandler        : "«create»"
+ContactTriggerManager                -[#000082,plain]-^  TriggerManager
+CourseCatalogTriggerManager          -[#595959,dashed]->  CourseCatalogClone                  : "«create»"
+CourseCatalogTriggerManager         "1" *-[#595959,plain]-> "courseCatalogClone\n1" CourseCatalogClone                  
+CourseCatalogTriggerManager          -[#595959,dashed]->  RecordIterator                      : "«create»"
+CourseCatalogTriggerManager          -[#000082,plain]-^  TriggerManager                      
+DateAdapter                          +-[#820000,plain]-  DataTypeAdapter                     
+DateAdapter                          -[#008200,dashed]-^  ITypeAdapter                        
+DoubleAdapter                        +-[#820000,plain]-  DataTypeAdapter                     
+DoubleAdapter                        -[#008200,dashed]-^  ITypeAdapter                        
+EnrollmentStatusHistoryDirector     "1" *-[#595959,plain]-> "builder\n1" SObjectBuilder                      
+IJsonAdapter                         +-[#820000,plain]-  JsonAdapter                         
+ITypeAdapter                         +-[#820000,plain]-  DataTypeAdapter                     
+IntegerAdapter                       +-[#820000,plain]-  DataTypeAdapter                     
+IntegerAdapter                       -[#008200,dashed]-^  ITypeAdapter                        
+JsonSObjectConverter                 -[#595959,dashed]->  BooleanAdapter                      : "«create»"
+JsonSObjectConverter                 -[#595959,dashed]->  DateAdapter                         : "«create»"
+JsonSObjectConverter                 -[#595959,dashed]->  DoubleAdapter                       : "«create»"
+JsonSObjectConverter                 -[#595959,dashed]->  IntegerAdapter                      : "«create»"
+JsonSObjectConverter                 -[#595959,dashed]->  SObjectAdapter                      : "«create»"
+JsonSObjectConverter                 -[#595959,dashed]->  SObjectBuilder                      : "«create»"
+JsonSObjectConverter                 -[#595959,dashed]->  SObjectListAdapter                  : "«create»"
+PersonalAccountContainer            "1" *-[#595959,plain]-> "account\n1" Account                             
+PersonalAccountContainer            "1" *-[#595959,plain]-> "contact\n1" Contact                             
+PersonalAccountContainer             +-[#820000,plain]-  ContactTriggerManager               
+PersonalAccountHandler               -[#595959,dashed]->  AccountDirector                     : "«create»"
+PersonalAccountHandler               -[#008200,dashed]-^  ITriggerHandler                     
+PersonalAccountHandler               -[#595959,dashed]->  SObjectBuilder                      : "«create»"
+ProgramEnrollmentCaseHandler         -[#595959,dashed]->  CaseDirector                        : "«create»"
+ProgramEnrollmentCaseHandler         -[#008200,dashed]-^  ITriggerHandler                     
+ProgramEnrollmentCaseHandler         -[#595959,dashed]->  SObjectBuilder                      : "«create»"
+ProgramEnrollmentSetupHandler        -[#008200,dashed]-^  ITriggerHandler                     
+ProgramEnrollmentTriggerManager      -[#595959,dashed]->  AcademicStandingHandler             : "«create»"
+ProgramEnrollmentTriggerManager      -[#595959,dashed]->  ProgramEnrollmentSetupHandler       : "«create»"
+ProgramEnrollmentTriggerManager      -[#000082,plain]-^  TriggerManager                      
+Record                               +-[#820000,plain]-  TriggerContext                      
+RecordIterator                       -[#595959,dashed]->  Record                              : "«create»"
+RecordIterator                       +-[#820000,plain]-  TriggerContext                      
+SObjectAdapter                       -[#008200,dashed]-^  IJsonAdapter                        
+SObjectAdapter                       +-[#820000,plain]-  JsonAdapter                         
+SObjectBuilder                       -[#008200,dashed]-^  ISObjectBuilder                     
+SObjectListAdapter                   -[#008200,dashed]-^  IJsonAdapter                        
+SObjectListAdapter                   +-[#820000,plain]-  JsonAdapter                         
+SoqlAdapter                          -[#008200,dashed]-^  IJsonAdapter                        
+SoqlAdapter                          +-[#820000,plain]-  JsonAdapter                         
+TriggerManager                       -[#595959,dashed]->  ApexException                       : "«create»"
+TriggerManager                       -[#595959,dashed]->  RecordIterator                      : "«create»"
+TriggerManager                      "1" *-[#595959,plain]-> "context\n1" TriggerContext                      
+UiDataService                        -[#595959,dashed]->  ApexException                       : "«create»"
+UiDataService                        -[#595959,dashed]->  JsonSObjectConverter                : "«create»"
+UiDataService                        -[#595959,dashed]->  SoqlAdapter                         : "«create»"
+UserSetupHandler                     -[#008200,dashed]-^  ITriggerHandler                     
+UserTriggerManager                   -[#000082,plain]-^  TriggerManager                      
+UserTriggerManager                   -[#595959,dashed]->  UserSetupHandler                    : "«create»"
+@enduml

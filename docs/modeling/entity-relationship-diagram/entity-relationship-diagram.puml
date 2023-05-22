@@ -1,0 +1,468 @@
+@startuml entity-relationship-diagram
+skinparam linetype ortho
+skinparam Padding 1
+skinparam ArrowThickness 1.25
+skinparam backgroundColor #EEEBDC
+left to right direction
+hide circle
+
+skinparam package {
+    BackgroundColor #EEEBDC
+    BorderColor #EEEBDC
+    Style rectangle
+}
+
+skinparam class {
+    BackgroundColor LightGray
+    BorderColor LightGray
+}
+
+package {
+    entity College
+    {
+        * CollegeId <<PK>>
+        --
+        * CollegeCode <<UK>>
+        CollegeName
+        NumberOfPrograms
+        CollegeDescription
+    }
+}
+
+package {
+    entity Program  
+    {
+        * ProgramId <<PK>>
+        --
+        * ProgramCode <<UK>>
+        * College <<FK>>
+        ProgramName
+        ProgramType
+        NumberOfActiveEnrollments
+        ProgramDescription
+    }
+}
+
+package {
+    entity CourseCatalog  
+    {
+        * CourseCatalogId <<PK>>
+        --
+        * CourseCatalogCode <<UK>>
+        * Program <<FK>>
+        * CatalogYear
+        CourseCatalogName
+        CourseCatalogDescription
+    }
+}
+
+package {
+    entity Course  
+    {
+        * CourseId <<PK>>
+        --
+        * CourseCode <<UK>>
+        CourseName
+        CoursePrefix
+        CourseNumber
+        CourseCreditHours
+        CourseLevel
+        EnrollmentCapacity
+        CourseDescription
+    }
+}
+
+package {
+    entity Concentration  
+    {
+        * ConcentrationId <<PK>>
+        --
+        * ConcentrationCode <<UK>>
+        * Program <<FK>>
+        ConcentrationName
+        ConcentrationDescription
+    }
+}
+
+package {
+    entity CourseCatalogRequiredCourse  
+    {
+        * CourseCatalogRequiredCourseId <<PK>>
+        --
+        * CourseCatalogRequiredCourseCode <<UK>>
+        * CourseCatalog <<FK>>
+        * Course <<FK>>
+    }
+}
+
+package {
+    entity CourseCatalogElectiveCourse
+    {
+        * CourseCatalogElectiveCourseId <<PK>>
+        --
+        * CourseCatalogElectiveCourseCode <<UK>>
+        * CourseCatalog <<FK>>
+        * Course <<FK>>
+    }
+}
+
+package {
+    entity CourseCorequisite  
+    {
+        * CourseCorequisiteId <<PK>>
+        --
+        * CourseCorequisiteCode <<UK>>
+        * Course <<FK>>
+        * CorequisiteCourse <<FK>>
+    }
+}
+
+package {
+    entity CoursePrerequisite  
+    {
+        * CoursePrerequisiteId <<PK>>
+        --
+        * CoursePrerequisiteCode <<UK>>
+        * Course <<FK>>
+        * PrerequisiteCourse <<FK>>
+    }
+}
+
+package {
+    entity CourseSection  
+    {
+        * CourseSectionId <<PK>>
+        --
+        * CourseSectionCode <<UK>>
+        * Course <<FK>>
+        * Semester <<FK>>
+        CourseSectionName
+        CourseSectionStartDate
+        CourseSectionEndDate
+    }
+}
+
+package {
+    entity CourseSectionEnrollment  
+    {
+        * CourseSectionEnrollmentId <<PK>>
+        --
+        * CourseSectionEnrollmentCode <<UK>>
+        * CourseSection <<FK>>
+        * Student <<FK>>
+        EnrollmentStatus
+    }
+}
+
+package {
+    entity ConcentrationCourse  
+    {
+        * ConcentrationCourseId <<PK>>
+        --
+        * ConcentrationCourseCode <<UK>>
+        * Concentration <<FK>>
+        * Course <<FK>>
+    }
+}
+
+package {
+    entity ProgramEnrollment  
+    {
+        * ProgramEnrollmentId <<PK>>
+        --
+        * ProgramEnrollmentCode <<UK>>
+        * Program <<FK>>
+        * Student <<FK>>
+        * StudentSuccessAdvisor <<FK>>
+        * CourseCatalog <<FK>>
+        EntrySemester <<FK>>
+        ProjectedGraduationSemester <<FK>>
+        ActualGraduationSemester <<FK>>
+        EnrollmentStatus
+        AcademicStanding
+    }
+}
+
+package {
+    entity EnrollmentPlannedSemester  
+    {
+        * EnrollmentPlannedSemesterId <<PK>>
+        --
+        * EnrollmentPlannedSemesterCode <<UK>>
+        * ProgramEnrollment <<FK>>
+        * Semester <<FK>>
+    }
+}
+
+package {
+    entity EnrollmentPlannedCourse  
+    {
+        * EnrollmentPlannedCourseId <<PK>>
+        --
+        * EnrollmentPlannedCourseCode <<UK>>
+        * EnrollmentPlannedSemester <<FK>>
+        * Course <<FK>>
+    }
+}
+
+package {
+    entity EnrollmentCondition  
+    {
+        * EnrollmentConditionId <<PK>>
+        --
+        * EnrollmentConditionCode <<UK>>
+        EnrollmentConditionName
+        EnrollmentConditionDescription
+    }
+}
+
+package {
+    entity AppliedEnrollmentCondition  
+    {
+        * AppliedEnrollmentConditionId <<PK>>
+        --
+        * AppliedEnrollmentConditionCode <<UK>>
+        * ProgramEnrollment <<FK>>
+        * EnrollmentCondition <<FK>>
+        AppliedEnrollmentConditionStatus
+    }
+}
+
+package {
+    entity EducationalBackground  
+    {
+        * EducationalBackgroundId <<PK>>
+        --
+        * EducationalBackgroundCode <<UK>>
+        * Student <<FK>>
+        InstitutionName
+        EducationalType
+        DegreeType
+        StartDate
+        EndDate
+    }
+}
+
+package {
+    entity AcademicStandingHistory  
+    {
+        * AcademicStandingHistoryId <<PK>>
+        --
+        * AcademicStandingHistoryCode <<UK>>
+        * ProgramEnrollment <<FK>>
+        NewAcademicStanding
+        OldAcademicStanding
+        ChangeReason
+        ChangeDate
+    }
+}
+
+package {
+    entity EnrollmentConcentration  
+    {
+        * EnrollmentConcentrationId <<PK>>
+        --
+        * EnrollmentConcentrationCode <<UK>>
+        * Concentration <<FK>>
+        * ProgramEnrollment <<FK>>
+    }
+}
+
+package {
+    entity EnrollmentStatusHistory  
+    {
+        * EnrollmentStatusHistoryId <<PK>>
+        --
+        * EnrollmentStatusHistoryCode <<UK>>
+        * ProgramEnrollment <<FK>>
+        NewEnrollmentStatus
+        OldEnrollmentStatus
+        ChangeReason
+        ChangeDate
+    }
+}
+
+package {
+    entity EnrollmentNotes
+    {
+        * EnrollmentNotesId <<PK>>
+        --
+        * EnrollmentNotesCode <<UK>>
+        * ProgramEnrollment <<FK>>
+        EnrollmentNotes
+    }
+}
+
+package {
+    entity ProfessionalExperience  
+    {
+        * ProfessionalExperienceId <<PK>>
+        --
+        * ProfessionalExperienceCode <<UK>>
+        * Student <<FK>>
+        CompanyName
+        JobTitle
+        StartDate
+        EndDate
+        Description
+    }
+}
+
+package {
+    entity SemesterSessionCourseOffering  
+    {
+        * SemesterSessionCourseOfferingId <<PK>>
+        --
+        * SemesterSessionCourseOfferingCode <<UK>>
+        * SemesterSession <<FK>>
+        * Course <<FK>>
+    }
+}
+
+package {
+    entity SemesterSession  
+    {
+        * SemesterSessionId <<PK>>
+        --
+        * SemesterSessionCode <<UK>>
+        SemesterSessionName
+    }
+}
+
+package {
+    entity Semester  
+    {
+        * SemesterId <<PK>>
+        --
+        * SemesterCode <<UK>>
+        SemesterSession <<FK>>
+        SemesterName
+        StartDate
+        EndDate
+    }
+}
+
+package {
+    entity Student  
+    {
+        * StudentId <<PK>>
+        --
+        * StudentCode <<UK>>
+        FirstName
+        LastName
+        FullName
+        PreferredName
+        UNCW_Email
+        UniversityId
+        PhoneNumber
+        PersonalEmail
+        UNCW_Employee
+        UNC_SystemEmployee
+    }
+}
+
+package {
+    entity StudentSuccessAdvisor  
+    {
+        * StudentSuccessAdvisorId <<PK>>
+        --
+        * StudentSuccessAdvisorCode <<UK>>
+        FirstName
+        LastName
+        FullName
+        PreferredName
+        UNCW_Email
+        UniversityId
+    }
+}
+
+package {
+    entity Instructor  
+    {
+        * InstructorId <<PK>>
+        --
+        * InstructorCode <<UK>>
+        FirstName
+        LastName
+        FullName
+        PreferredName
+        UNCW_Email
+        UniversityId
+    }
+}
+
+package {
+    entity Reminder  
+    {
+        * ReminderId <<PK>>
+        --
+        * ReminderCode <<UK>>
+        ReminderDescription
+        ReminderType
+        ReminderFrequency
+        ReminderStatus
+        ReminderStartDate
+        ReminderEndDate
+        ReminderDueDate
+    }  
+}
+
+' ---------------------------------------------
+' -------------- Relationships ----------------
+' ---------------------------------------------
+
+College ||--o{ Program
+
+Program ||--o{ CourseCatalog
+Program ||--o{ Concentration
+Program ||--o{ ProgramEnrollment
+
+CourseCatalog ||--o{ CourseCatalogRequiredCourse
+CourseCatalog ||--o{ CourseCatalogElectiveCourse
+CourseCatalog ||--o{ ProgramEnrollment
+
+Course ||--o{ CourseCorequisite
+Course ||--o{ CoursePrerequisite
+Course ||--o{ CourseCorequisite
+Course ||--o{ CoursePrerequisite
+Course ||--o{ CourseSection
+Course ||--o{ ConcentrationCourse
+Course ||--o{ EnrollmentPlannedCourse
+Course ||--o{ SemesterSessionCourseOffering
+Course ||--o{ CourseCatalogRequiredCourse
+Course ||--o{ CourseCatalogElectiveCourse
+
+Concentration ||--o{ ConcentrationCourse
+Concentration ||--o{ EnrollmentConcentration
+
+SemesterSession ||--o{ SemesterSessionCourseOffering
+SemesterSession ||--o{ Semester
+
+Semester ||--o{ CourseSection
+Semester ||--o{ EnrollmentPlannedSemester
+Semester ||--o{ ProgramEnrollment
+
+Student ||--o{ ProgramEnrollment
+Student ||--o{ CourseSectionEnrollment
+Student ||--o{ EducationalBackground
+Student ||--o{ ProfessionalExperience
+
+StudentSuccessAdvisor ||--o{ ProgramEnrollment
+StudentSuccessAdvisor ||--o{ Reminder
+
+Instructor ||--o{ CourseSection
+
+CourseSection ||--o{ CourseSectionEnrollment
+
+ProgramEnrollment ||--o{ EnrollmentPlannedSemester
+ProgramEnrollment ||--o{ AppliedEnrollmentCondition
+ProgramEnrollment ||--o{ AcademicStandingHistory
+ProgramEnrollment ||--o{ EnrollmentConcentration
+ProgramEnrollment ||--o{ EnrollmentStatusHistory
+ProgramEnrollment ||--o{ EnrollmentNotes
+
+EnrollmentPlannedSemester ||--o{ EnrollmentPlannedCourse
+
+EnrollmentCondition ||--o{ AppliedEnrollmentCondition
+
+@enduml
