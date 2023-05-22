@@ -1,0 +1,17 @@
+<template>
+    <lightning-button onclick={handleOpen} label="Create Enrollment" variant="brand-outline"></lightning-button>
+    <c-async-wrapper promise={records} onresolved={handleResolved} onrejected={handleRejected}>
+        <c-record-form title="New Enrollment" size="large" s-object={programEnrollmentSObject} fields={fields}
+            onsuccess={handleSuccess}>
+            <div class="slds-p-top_small" slot="extra-fields">
+                <template for:each={enrollmentConditionOptions} for:item="enrollmentCondition">
+                    <div key={enrollmentCondition.id}>
+                        <lightning-input type="checkbox" label={enrollmentCondition.description}
+                            value={enrollmentCondition.id} onchange={handleEnrollmentConditionChange}>
+                        </lightning-input>
+                    </div>
+                </template>
+            </div>
+        </c-record-form>
+    </c-async-wrapper>
+</template>

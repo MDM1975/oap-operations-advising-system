@@ -1,0 +1,23 @@
+<template>
+    <div class="quick-link__container slds-box slds-box_xx-small" style="height: 15rem;">
+        <div class="slds-p-left_small">
+            <div class="slds-p-vertical_xx-small">
+                <span class="quick-links__header slds-text-heading_large">Quick Links</span>
+            </div>
+            <div class="slds-p-vertical_xx-small">
+                <span class="quick-links__header-border"></span>
+            </div>
+        </div>
+        <div class="slds-grid slds-grid_vertical slds-grid_align-space">
+            <div class="quick-links__item" onclick={handleNavigation} data-url={mySeaPortUrl}>
+                <span class="slds-text-heading_small">mySeaport</span>
+            </div>
+            <div class="quick-links__item" onclick={handleNavigation} data-url={seaNetUrl}>
+                <span class="slds-text-heading_small">SeaNet</span>
+            </div>
+            <div class="quick-links__item" onclick={handleNavigation} data-url={starFishUrl}>
+                <span class="slds-text-heading_small">Starfish</span>
+            </div>
+        </div>
+    </div>
+</template>

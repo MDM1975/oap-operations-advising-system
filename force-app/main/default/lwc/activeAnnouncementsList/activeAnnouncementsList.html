@@ -1,0 +1,70 @@
+<template>
+    <c-formatted-wrapper with-border="false">
+        <div slot="title">Announcements</div>
+        <div slot="content">
+            <template lwc:if={hasAnnouncements}>
+                <div class="slds-box slds-grid slds-grid_vertical">
+                    <div class="slds-col slds-p-bottom_x-small">
+                        <div class="slds-media slds-media_center">
+                            <div class="slds-media__figure">
+                                <lightning-icon icon-name="utility:announcement" size="small"
+                                    variant="bare"></lightning-icon>
+                            </div>
+                            <div class="slds-media__body">
+                                <span class="slds-text-heading_large">
+                                    {announcement.subject}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slds-col">
+                        <span class="slds-text-color_weak">
+                            <span>{details.author}, </span>
+                            <lightning-formatted-date-time value={details.date}>
+                            </lightning-formatted-date-time>
+                        </span>
+                    </div>
+                    <div class="slds-col slds-p-vertical_x-small">
+                        <span class="announcements-header__divider"></span>
+                    </div>
+                    <div class="slds-col">
+                        <span class="slds-text-heading_small">{announcement.description}</span>
+                    </div>
+                    <div class="slds-col">
+                        <div class="slds-grid slds-grid_align-center slds-p-top_small">
+                            <div class="slds-col slds-p-horizontal_x-small">
+                                <lightning-button-icon icon-name="utility:jump_to_left" size="large" variant="bare"
+                                    alternative-text="Jump to start" onclick={start}></lightning-button-icon>
+                                <lightning-button-icon icon-name="utility:chevronleft" size="large" variant="bare"
+                                    alternative-text="Previous page" onclick={back}></lightning-button-icon>
+                            </div>
+                            <div class="slds-col slds-p-horizontal_x-small">
+                                <span class="slds-text-heading_medium slds-text-color_weak">
+                                    {page} of {pages}
+                                </span>
+                            </div>
+                            <div class="slds-col slds-p-horizontal_x-small">
+                                <lightning-button-icon icon-name="utility:chevronright" size="large" variant="bare"
+                                    alternative-text="Next page" onclick={next}></lightning-button-icon>
+                                <lightning-button-icon icon-name="utility:jump_to_right" size="large" variant="bare"
+                                    alternative-text="Jump to end" onclick={end}></lightning-button-icon>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </template>
+            <template lwc:else>
+                <div class="slds-box slds-grid slds-grid_align-center slds-p-around_medium">
+                    <div class="slds-col slds-p-horizontal_x-small">
+                        <lightning-icon icon-name="utility:announcement" size="large" variant="bare"></lightning-icon>
+                    </div>
+                    <div class="slds-col slds-p-horizontal_x-small slds-p-top_small">
+                        <span class="slds-text-heading_medium slds-p-left_small slds-text-color_weak">
+                            No Active Announcements Found.
+                        </span>
+                    </div>
+                </div>
+            </template>
+        </div>
+    </c-formatted-wrapper>
+</template>

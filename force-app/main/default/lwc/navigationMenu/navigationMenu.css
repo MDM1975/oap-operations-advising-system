@@ -1,0 +1,75 @@
+:host {
+    --seahawk-blue: #06215b;
+    --seahawk-green: #1a8b84;
+    --scale-up: scale(1.1);
+    --font-large: 1.5rem;
+    --transition-duration: 0.3s;
+    --transition-timing: ease-in-out;
+    --default-padding: 1rem;
+    --default-margin: 1rem;
+    --hover-background: rgba(0, 0, 0, 0.09);
+}
+
+.nav-menu {
+    text-align: center;
+}
+
+.nav-menu__item {
+    position: relative;
+    cursor: pointer;
+    padding: var(--default-padding);
+    margin: var(--default-margin);
+}
+
+.nav-menu__item-text {
+    font-size: var(--font-large);
+    font-weight: bolder;
+    color: var(--seahawk-blue);
+}
+
+.nav-menu__item:hover {
+    background-color: var(--hover-background);
+    filter: brightness(1.2);
+    transform: var(--scale-up-small);
+}
+
+.nav-menu__item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+    background-color: var(--hover-background);
+    transition: opacity var(--transition-duration) var(--transition-timing);
+}
+
+.nav-menu__item:hover::before {
+    opacity: 1;
+}
+
+.nav-menu__item::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 0.1rem;
+    display: block;
+    background-color: var(--seahawk-green);
+    transition: width var(--transition-duration) var(--transition-timing),
+        left var(--transition-duration) var(--transition-timing);
+}
+
+.nav-menu__item:hover .nav-menu__item-text,
+.nav-menu__item.active .nav-menu__item-text {
+    filter: brightness(1.2);
+    transform: var(--scale-up);
+}
+
+.nav-menu__item:hover::after,
+.nav-menu__item.active::after {
+    width: 100%;
+    left: 0;
+}

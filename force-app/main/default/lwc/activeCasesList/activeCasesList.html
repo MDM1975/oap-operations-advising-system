@@ -1,0 +1,92 @@
+<template>
+    <c-formatted-wrapper with-border="false">
+        <div slot="title">Active Cases</div>
+        <div class="slds-m-horizontal_small" slot="content">
+            <c-async-wrapper promise={cases} onresolved={handleResolved} onrejected={handleRejected}>
+                <template lwc:if={hasCases}>
+                    <template for:each={myCases} for:item="myCase">
+                        <div key={myCase.id} class="slds-box slds-m-bottom_xx-small slds-grid slds-gutters slds-wrap">
+                            <div class="slds-col slds-size_1-of-2">
+                                <div class="detail-field slds-form-element slds-form-element_readonly">
+                                    <span class="slds-form-element__label">
+                                        <span class="slds-text-heading_small">Case Number</span>
+                                    </span>
+                                    <div class="slds-form-element__control">
+                                        <div class="slds-form-element__static">
+                                            <c-navigation-link label={myCase.number} page="case"
+                                                record-id={myCase.id}></c-navigation-link>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slds-col slds-size_1-of-2">
+                                <div class="detail-field slds-form-element slds-form-element_readonly">
+                                    <span class="slds-form-element__label">
+                                        <span class="slds-text-heading_small">Subject</span>
+                                    </span>
+                                    <div class="slds-form-element__control">
+                                        <div class="slds-form-element__static">{myCase.subject}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slds-col slds-size_1-of-2">
+                                <div class="detail-field slds-form-element slds-form-element_readonly">
+                                    <span class="slds-form-element__label">
+                                        <span class="slds-text-heading_small">Status</span>
+                                    </span>
+                                    <div class="slds-form-element__control">
+                                        <div class="slds-form-element__static">{myCase.status}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slds-col slds-size_1-of-2">
+                                <div class="detail-field slds-form-element slds-form-element_readonly">
+                                    <span class="slds-form-element__label">
+                                        <span class="slds-text-heading_small">Created Date</span>
+                                    </span>
+                                    <div class="slds-form-element__control">
+                                        <div class="slds-form-element__static">
+                                            <lightning-formatted-date-time value={myCase.createdDate}>
+                                            </lightning-formatted-date-time>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+                </template>
+                <template lwc:else>
+                    <div class="slds-box slds-grid slds-grid_align-center slds-p-around_medium">
+                        <div class="slds-col slds-p-horizontal_x-small">
+                            <lightning-icon icon-name="utility:info" size="small"></lightning-icon>
+                        </div>
+                        <div class="slds-col slds-p-horizontal_x-small">
+                            <span class="slds-text-color_weak">No Case Records Found.</span>
+                        </div>
+                    </div>
+                </template>
+                <template lwc:if={hasMultiplePages}>
+                    <div class="slds-grid slds-grid_align-center slds-p-vertical_small">
+                        <div class="slds-col slds-p-horizontal_x-small">
+                            <lightning-button-icon icon-name="utility:jump_to_left" size="large" variant="bare"
+                                alternative-text="Jump to start" onclick={handleJumpToStart}></lightning-button-icon>
+                            <lightning-button-icon icon-name="utility:chevronleft" size="large" variant="bare"
+                                alternative-text="Previous page" onclick={handleBack}></lightning-button-icon>
+                        </div>
+                        <div class="slds-col slds-p-horizontal_x-small">
+                            <span class="slds-text-heading_medium slds-text-color_weak">
+                                {currentPage} of {pageCount}
+                            </span>
+                        </div>
+                        <div class="slds-col slds-p-horizontal_x-small">
+                            <lightning-button-icon icon-name="utility:chevronright" size="large" variant="bare"
+                                alternative-text="Next page" onclick={handleNext}></lightning-button-icon>
+                            <lightning-button-icon icon-name="utility:jump_to_right" size="large" variant="bare"
+                                alternative-text="Jump to end" onclick={handleJumpToEnd}></lightning-button-icon>
+                        </div>
+                    </div>
+                </template>
+            </c-async-wrapper>
+        </div>
+    </c-formatted-wrapper>
+</template>

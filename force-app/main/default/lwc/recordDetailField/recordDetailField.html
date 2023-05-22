@@ -1,0 +1,72 @@
+<template>
+    <template lwc:if={isStatic}>
+        <div class="detail-field slds-form-element slds-form-element_edit slds-form-element_readonly">
+            <span class="slds-form-element__label">
+                <span class="slds-text-heading_small">{field.label}</span>
+            </span>
+            <div class="slds-form-element__control">
+                <div class="slds-form-element__static">
+                    <template lwc:if={isLink}>
+                        <c-navigation-link label={field.url.label} page={field.url.page}
+                            record-id={field.url.recordId}></c-navigation-link>
+                    </template>
+                    <template lwc:elseif={isEmail}>
+                        <lightning-formatted-email value={value}></lightning-formatted-email>
+                    </template>
+                    <template lwc:elseif={isPhone}>
+                        <lightning-formatted-phone value={value}></lightning-formatted-phone>
+                    </template>
+                    <template lwc:elseif={isPhone}>
+                        <lightning-formatted-phone value={value}></lightning-formatted-phone>
+                    </template>
+                    <template lwc:elseif={isDate}>
+                        <lightning-formatted-date-time value={dateValue}></lightning-formatted-date-time>
+                    </template>
+                    <template lwc:elseif={isNumber}>
+                        <lightning-formatted-number value={value}></lightning-formatted-number>
+                    </template>
+                    <template lwc:else>
+                        <lightning-formatted-text value={value}></lightning-formatted-text>
+                    </template>
+                </div>
+                <template lwc:if={isEditable}>
+                    <lightning-icon class="edit-icon" icon-name="utility:edit" size="xx-small"
+                        onclick={handleEdit}></lightning-icon>
+                </template>
+            </div>
+        </div>
+    </template>
+    <template lwc:else>
+        <div class="detail-field slds-form-element slds-form-element_edit">
+            <span class="slds-form-element__label">
+                <span class="slds-text-heading_small">{field.label}</span>
+            </span>
+            <div class="slds-form-element__control">
+                <div class="slds-form-element__static">
+                    <div class="slds-grid">
+                        <div class="slds-col slds-size_6-of-8">
+                            <template lwc:if={isCombobox}>
+                                <lightning-combobox label={field.label} variant="label-hidden" value={value}
+                                    placeholder={placeholder} options={options}></lightning-combobox>
+                            </template>
+                            <template lwc:elseif={isTextarea}>
+                                <lightning-textarea label={field.label} variant="label-hidden" max-length="255"
+                                    value={value}></lightning-textarea>
+                            </template>
+                            <template lwc:else>
+                                <lightning-input type={field.type} label={field.label} variant="label-hidden"
+                                    value={value}></lightning-input>
+                            </template>
+                        </div>
+                        <div class="slds-col slds-size_2-of-8">
+                            <lightning-icon class="save-icon slds-p-horizontal_xx-small" icon-name="utility:check"
+                                size="xx-small" onclick={handleSave}></lightning-icon>
+                            <lightning-icon class="cancel-icon slds-p-horizontal_xx-small" icon-name="utility:close"
+                                size="xx-small" onclick={handleCancel}></lightning-icon>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+</template>

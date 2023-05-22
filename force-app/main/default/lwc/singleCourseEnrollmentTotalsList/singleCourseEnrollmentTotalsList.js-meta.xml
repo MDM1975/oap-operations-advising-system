@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>56.0</apiVersion>
+    <isExposed>true</isExposed>
+    <masterLabel>
+        Single Course Enrollment Totals List
+    </masterLabel>
+    <description>
+        This component displays a list of course enrollment totals for a single course during a specific semester.
+    </description>
+    <targets>
+        <target>lightning__AppPage</target>
+        <target>lightning__HomePage</target>
+        <target>lightning__RecordPage</target>
+        <target>lightningCommunity__Page</target>
+        <target>lightningCommunity__Default</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightningCommunity__Default">
+            <property name="recordId" label="Record ID" type="String" default="{!recordId}"
+                description="The record ID of the course record." />
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>

@@ -1,0 +1,75 @@
+<template>
+    <c-formatted-wrapper with-border="false">
+        <div slot="title">{title}</div>
+        <template lwc:if={hasSearch}>
+            <div slot="action">
+                <input type="search" class="search-bar" placeholder="Search..." oninput={handleSearch}>
+            </div>
+        </template>
+        <div slot="content">
+            <c-async-wrapper promise={records} onresolved={handleResolved} onrejected={handleRejected}>
+                <div class="slds-box">
+                    <div class="slds-grid slds-m-vertical_x-small">
+                        <template for:each={columns} for:item="column">
+                            <div key={column.name} class={columnStyle}>
+                                <span class="slds-text-heading_medium">{column.label}</span>
+                            </div>
+                        </template>
+                    </div>
+                    <template lwc:if={hasRows}>
+                        <div class="slds-grid slds-grid_vertical">
+                            <template for:each={rows} for:item="row">
+                                <div key={row.id}
+                                    class="slds-grid slds-grid_vertical-align-center slds-p-vertical_xx-small">
+                                    <template for:each={row.cells} for:item="cell">
+                                        <div key={cell.name} class={cellStyle} style="min-height: 1.75rem;">
+                                            <template lwc:if={cell.url}>
+                                                <c-navigation-link label={cell.url.label} page={cell.url.page}
+                                                    record-id={cell.url.recordId}></c-navigation-link>
+                                            </template>
+                                            <template lwc:else> {cell.value} </template>
+                                        </div>
+                                    </template>
+                                </div>
+                            </template>
+                        </div>
+                    </template>
+                    <template lwc:else>
+                        <div class="slds-align_absolute-center">
+                            <div class="slds-grid slds-grid_align-center slds-p-around_medium">
+                                <div class="slds-col slds-p-horizontal_x-small">
+                                    <lightning-icon icon-name="utility:info" size="small"></lightning-icon>
+                                </div>
+                                <div class="slds-col slds-p-horizontal_x-small">
+                                    <span class="slds-text-color_weak">No {title} Records Found.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+                    <template lwc:if={hasMultiplePages}>
+                        <div class="slds-grid slds-grid_align-center slds-p-top_small">
+                            <div class="slds-col slds-p-horizontal_x-small">
+                                <lightning-button-icon icon-name="utility:jump_to_left" size="large" variant="bare"
+                                    alternative-text="Jump to start"
+                                    onclick={handleJumpToStart}></lightning-button-icon>
+                                <lightning-button-icon icon-name="utility:chevronleft" size="large" variant="bare"
+                                    alternative-text="Previous page" onclick={handleBack}></lightning-button-icon>
+                            </div>
+                            <div class="slds-col slds-p-horizontal_x-small">
+                                <span class="slds-text-heading_medium slds-text-color_weak">
+                                    {currentPage} of {pageCount}
+                                </span>
+                            </div>
+                            <div class="slds-col slds-p-horizontal_x-small">
+                                <lightning-button-icon icon-name="utility:chevronright" size="large" variant="bare"
+                                    alternative-text="Next page" onclick={handleNext}></lightning-button-icon>
+                                <lightning-button-icon icon-name="utility:jump_to_right" size="large" variant="bare"
+                                    alternative-text="Jump to end" onclick={handleJumpToEnd}></lightning-button-icon>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+            </c-async-wrapper>
+        </div>
+    </c-formatted-wrapper>
+</template>

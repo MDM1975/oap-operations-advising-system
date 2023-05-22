@@ -1,0 +1,50 @@
+<template>
+    <c-formatted-wrapper with-border="false">
+        <div slot="title">
+            {title}
+        </div>
+        <div slot="action">
+            <lightning-button-icon icon-name="utility:add" variant="bare" size="large"
+                onclick={handleAddConcentration}></lightning-button-icon>
+            <c-new-enrollment-concentration-form student-id={recordId}
+                onsuccess={handleSuccess}></c-new-enrollment-concentration-form>
+        </div>
+        <div slot="content">
+            <template lwc:if={hasConcentrations}>
+                <div class="slds-grid slds-wrap">
+                    <template for:each={concentrations} for:item="concentration">
+                        <div key={concentration.id} class="slds-col slds-p-around_xx-small slds-size_1-of-2">
+                            <div class="slds-box slds-m-bottom_xx-small" style="min-height: 12rem">
+                                <div class="slds-grid slds-grid_vertical">
+                                    <div class="slds-col">
+                                        <span class="slds-text-heading_medium">{concentration.name}</span>
+                                    </div>
+                                    <div class="slds-col">
+                                        <ul class="slds-list_dotted slds-has-inline-block-links_space">
+                                            <template for:each={concentration.courses} for:item="course">
+                                                <li key={course.id} class="slds-item">
+                                                    <c-navigation-link page="course" label={course.title}
+                                                        record-id={course.id}></c-navigation-link>
+                                                </li>
+                                            </template>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+            </template>
+            <template lwc:else>
+                <div class="slds-box slds-grid slds-grid_align-center slds-p-around_medium">
+                    <div class="slds-col slds-p-horizontal_x-small">
+                        <lightning-icon icon-name="utility:info" size="small"></lightning-icon>
+                    </div>
+                    <div class="slds-col slds-p-horizontal_x-small">
+                        <span class="slds-text-color_weak">No Concentrations Found.</span>
+                    </div>
+                </div>
+            </template>
+        </div>
+    </c-formatted-wrapper>
+</template>

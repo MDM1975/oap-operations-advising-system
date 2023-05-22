@@ -1,0 +1,79 @@
+<template>
+    <c-async-wrapper promise={courseCatalogs} onresolved={handleResolved} onrejected={handleRejected}>
+        <c-formatted-wrapper with-border="false">
+            <div slot="title">{title}</div>
+            <div slot="action">
+                <lightning-button-menu menu-alignment="right" onselect={handleSelect}>
+                    <template for:each={courseCatalogOptions} for:item="courseCatalog">
+                        <lightning-menu-item key={courseCatalog.label} label={courseCatalog.label}
+                            value={courseCatalog.value}></lightning-menu-item>
+                    </template>
+                </lightning-button-menu>
+            </div>
+            <div slot="content">
+                <template lwc:if={hasCourseCatalogs}>
+                    <lightning-tabset>
+                        <lightning-tab label="Required Courses">
+                            <template lwc:if={hasRequiredCourses}>
+                                <ul class="slds-has-dividers_around slds-has-block-links_space">
+                                    <template for:each={courseCatalog.requiredCourses} for:item="requiredCourse">
+                                        <li key={requiredCourse.id} class="slds-item">
+                                            <c-navigation-link label={requiredCourse.url.label}
+                                                page={requiredCourse.url.page}
+                                                record-id={requiredCourse.url.recordId}></c-navigation-link>
+                                        </li>
+                                    </template>
+                                </ul>
+                            </template>
+                            <template lwc:else>
+                                <div
+                                    class="slds-box slds-grid slds-gutters slds-grid_align-center slds-p-around_medium">
+                                    <div class="slds-col">
+                                        <lightning-icon icon-name="utility:info" size="small"></lightning-icon>
+                                    </div>
+                                    <div class="slds-col">
+                                        <span class="slds-text-color_weak">No Required Courses Found.</span>
+                                    </div>
+                                </div>
+                            </template>
+                        </lightning-tab>
+                        <lightning-tab label="Elective Courses">
+                            <template lwc:if={hasElectiveCourses}>
+                                <ul class="slds-has-dividers_around slds-has-block-links_space">
+                                    <template for:each={courseCatalog.electiveCourses} for:item="electiveCourse">
+                                        <li key={electiveCourse.id} class="slds-item">
+                                            <c-navigation-link label={electiveCourse.url.label}
+                                                page={electiveCourse.url.page}
+                                                record-id={electiveCourse.url.recordId}></c-navigation-link>
+                                        </li>
+                                    </template>
+                                </ul>
+                            </template>
+                            <template lwc:else>
+                                <div
+                                    class="slds-box slds-grid slds-gutters slds-grid_align-center slds-p-around_medium">
+                                    <div class="slds-col">
+                                        <lightning-icon icon-name="utility:info" size="small"></lightning-icon>
+                                    </div>
+                                    <div class="slds-col">
+                                        <span class="slds-text-color_weak">No Elective Courses Found.</span>
+                                    </div>
+                                </div>
+                            </template>
+                        </lightning-tab>
+                    </lightning-tabset>
+                </template>
+                <template lwc:else>
+                    <div class="slds-box slds-grid slds-gutters slds-grid_align-center slds-p-around_medium">
+                        <div class="slds-col">
+                            <lightning-icon icon-name="utility:info" size="small"></lightning-icon>
+                        </div>
+                        <div class="slds-col">
+                            <span class="slds-text-color_weak">No Course Catalogs Found.</span>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </c-formatted-wrapper>
+    </c-async-wrapper>
+</template>

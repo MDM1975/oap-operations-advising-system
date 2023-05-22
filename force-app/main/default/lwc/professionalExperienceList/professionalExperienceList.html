@@ -1,0 +1,11 @@
+<template>
+    <c-related-record-list title="Professional Experiences" s-object={professionalExperienceSObject}
+        filter-by={filterBy} sort-by={sortBy} fields={fields} list-size={listSize}>
+        <div slot="action">
+            <lightning-button-icon icon-name="utility:add" variant="bare" size="large"
+                onclick={handleAddProfessionalExperience}></lightning-button-icon>
+            <c-record-form title="New Professional Experience" s-object={professionalExperienceSObject} fields={fields}
+                onsuccess={handleSuccess} size="medium"></c-record-form>
+        </div>
+    </c-related-record-list>
+</template>

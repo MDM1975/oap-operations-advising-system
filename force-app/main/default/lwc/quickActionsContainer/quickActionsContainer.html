@@ -1,0 +1,54 @@
+<template>
+    <div class="slds-grid slds-gutters slds-align_absolute-center">
+        <div class="slds-col slds-size_1-of-4" style="height: 15rem;">
+            <c-quick-links></c-quick-links>
+        </div>
+        <div class="slds-col slds-size_1-of-4">
+            <c-new-reminder-form></c-new-reminder-form>
+            <button class="slds-button slds-button_neutral slds-button_stretch" style="height: 15rem;"
+                onclick={handleReminderQuickAction}>
+                <div class="slds-grid slds-grid_vertical slds-align_absolute-center">
+                    <div class="slds-col">
+                        <span class="quick-action__title slds-text-heading_large">Create Reminder</span>
+                        <span class="quick-action__title-border"></span>
+                    </div>
+                    <div class="slds-col slds-p-top_small">
+                        <lightning-icon icon-name="utility:reminder" size="large"></lightning-icon>
+                    </div>
+                </div>
+            </button>
+        </div>
+        <div class="slds-col slds-size_1-of-4">
+            <c-new-case-form></c-new-case-form>
+            <button class="slds-button slds-button_neutral slds-button_stretch" style="height: 15rem;"
+                onclick={handleCaseQuickAction}>
+                <div class="slds-grid slds-grid_vertical slds-align_absolute-center">
+                    <div class="slds-col">
+                        <span class="quick-action__title slds-text-heading_large">Create Case</span>
+                        <span class="quick-action__title-border"></span>
+                    </div>
+                    <div class="slds-col slds-p-top_small">
+                        <lightning-icon icon-name="utility:case" size="large"></lightning-icon>
+                    </div>
+                </div>
+            </button>
+        </div>
+        <template lwc:if={isStudentOnboardingUser}>
+            <div class="slds-col slds-size_1-of-4">
+                <c-new-student-form></c-new-student-form>
+                <button class="slds-button slds-button_neutral slds-button_stretch" style="height: 15rem;"
+                    onclick={handleStudentQuickAction}>
+                    <div class="slds-grid slds-grid_vertical slds-align_absolute-center">
+                        <div class="slds-col">
+                            <span class="quick-action__title slds-text-heading_large">Create Student</span>
+                            <span class="quick-action__title-border"></span>
+                        </div>
+                        <div class="slds-col slds-p-top_small">
+                            <lightning-icon icon-name="utility:adduser" size="large"></lightning-icon>
+                        </div>
+                    </div>
+                </button>
+            </div>
+        </template>
+    </div>
+</template>

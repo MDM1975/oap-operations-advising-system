@@ -1,0 +1,21 @@
+<template>
+    <nav class="nav-menu slds-grid">
+        <div class="nav-menu__item slds-col slds-p-horizontal_small active" onclick={handleNavigation}
+            data-url={homeUrl}>
+            <span class="nav-menu__item-text">Home</span>
+        </div>
+        <div class="nav-menu__item slds-col slds-p-horizontal_small" onclick={handleNavigation} data-url={advisingUrl}>
+            <span class="nav-menu__item-text">Advising</span>
+        </div>
+        <div class="nav-menu__item slds-col slds-p-horizontal_small" onclick={handleNavigation} data-url={programsUrl}>
+            <span class="nav-menu__item-text">Programs</span>
+        </div>
+        <div class="nav-menu__item slds-col slds-p-horizontal_small" onclick={handleNavigation} data-url={coursesUrl}>
+            <span class="nav-menu__item-text">Courses</span>
+        </div>
+        <div class="nav-menu__item slds-col slds-p-horizontal_small" onclick={handleNavigation}
+            data-url={casesAndRemindersUrl}>
+            <span class="nav-menu__item-text">Cases & Reminders</span>
+        </div>
+    </nav>
+</template>

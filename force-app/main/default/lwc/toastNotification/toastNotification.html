@@ -1,0 +1,17 @@
+<template>
+    <div class="toast-container">
+        <div class="toast-icon">
+            <template lwc:if={isSuccess}>
+                <lightning-icon icon-name="utility:success" size="small"></lightning-icon>
+            </template>
+            <template lwc:elseif={isError}>
+                <lightning-icon icon-name="utility:error" size="small"></lightning-icon>
+            </template>
+        </div>
+        <div>
+            <p class="toast-title">{title}</p>
+            <p class="toast-message">{message}</p>
+        </div>
+        <div class="toast-close" onclick={hide}>&times;</div>
+    </div>
+</template>

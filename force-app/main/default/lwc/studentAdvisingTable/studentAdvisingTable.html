@@ -1,0 +1,16 @@
+<template>
+    <lightning-tabset>
+        <lightning-tab label="My Students">
+            <c-record-table columns={columns} records={myStudents} with-search="true" title="My Students">
+            </c-record-table>
+        </lightning-tab>
+        <lightning-tab label="All Students">
+            <c-record-table columns={columns} records={allStudents} with-search="true" title="All Students">
+            </c-record-table>
+        </lightning-tab>
+        <lightning-tab label="Graduated Students">
+            <c-record-table columns={columns} records={graduatedStudents} with-search="true" title="Graduated Students">
+            </c-record-table>
+        </lightning-tab>
+    </lightning-tabset>
+</template>

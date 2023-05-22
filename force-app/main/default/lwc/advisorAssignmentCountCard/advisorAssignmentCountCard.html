@@ -1,0 +1,22 @@
+<template>
+    <template lwc:if={isStudentOnboardingUser}>
+        <c-formatted-wrapper>
+            <div slot="title">Advisor Assignments</div>
+            <div slot="content">
+                <div class="slds-grid slds-wrap">
+                    <template for:each={advisors} for:item="advisor">
+                        <div key={advisor.name} class="slds-col slds-size_1-of-2">
+                            <ul class="slds-list_dotted">
+                                <li class="slds-item slds-m-bottom_xx-small">
+                                    <span class="slds-text-heading_small">
+                                        {advisor.name}: {advisor.assignments}
+                                    </span>
+                                </li>
+                            </ul>
+                        </div>
+                    </template>
+                </div>
+            </div>
+        </c-formatted-wrapper>
+    </template>
+</template>

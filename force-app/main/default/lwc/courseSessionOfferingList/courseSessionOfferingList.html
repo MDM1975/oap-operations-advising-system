@@ -1,0 +1,32 @@
+<template>
+    <c-formatted-wrapper>
+        <div slot="title">Offered Sessions</div>
+        <div slot="content">
+            <template lwc:if={hasSessions}>
+                <div class="slds-grid slds-wrap">
+                    <template for:each={sessions} for:item="session">
+                        <div key={session.id} class="slds-col slds-size_1-of-2">
+                            <ul class="slds-list_dotted">
+                                <li class="slds-item slds-m-bottom_xx-small">
+                                    <span class="slds-text-heading_small">
+                                        {session.title}
+                                    </span>
+                                </li>
+                            </ul>
+                        </div>
+                    </template>
+                </div>
+            </template>
+            <template lwc:else>
+                <div class="slds-grid slds-grid_align-center slds-p-around_medium">
+                    <div class="slds-col slds-p-horizontal_x-small">
+                        <lightning-icon icon-name="utility:info" size="small"></lightning-icon>
+                    </div>
+                    <div class="slds-col slds-p-horizontal_x-small">
+                        <span class="slds-text-color_weak">No Sessions Found.</span>
+                    </div>
+                </div>
+            </template>
+        </div>
+    </c-formatted-wrapper>
+</template>

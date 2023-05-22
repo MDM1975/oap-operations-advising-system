@@ -1,0 +1,22 @@
+<template>
+    <c-async-wrapper promise={recordType} onresolved={handleResolved} onrejected={handleRejected}>
+        <template lwc:if={isProgramEnrollment}>
+            <c-record-detail-card title="Program Enrollment Case Detail" s-object={caseSObject} record-id={recordId}
+                filter-by={filterBy} fields={programEnrollmentFields}>
+                <div slot="action">
+                    <c-new-program-enrollment-form record-id={recordId}></c-new-program-enrollment-form>
+                </div>
+            </c-record-detail-card>
+        </template>
+        <template lwc:elseif={isOperations}>
+            <c-record-detail-card title="Operations Case Detail" s-object={caseSObject} record-id={recordId}
+                filter-by={filterBy} fields={operationsFields}>
+            </c-record-detail-card>
+        </template>
+        <template lwc:else>
+            <c-record-detail-card title="Case Detail" s-object={caseSObject} record-id={recordId} filter-by={filterBy}
+                fields={operationsFields}>
+            </c-record-detail-card>
+        </template>
+    </c-async-wrapper>
+</template>

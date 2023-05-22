@@ -1,0 +1,31 @@
+<template>
+    <c-formatted-wrapper>
+        <div slot="title">{title}</div>
+        <div slot="action">
+            <slot name="action"></slot>
+        </div>
+        <div slot="content">
+            <c-async-wrapper promise={record} onresolved={handleResolved} onrejected={handleRejected}>
+                <template lwc:if={hasDetails}>
+                    <div class="slds-form slds-grid slds-gutters slds-wrap">
+                        <template for:each={details} for:item="detail">
+                            <div key={detail.field.name} class={size}>
+                                <c-record-detail-field field={detail}></c-record-detail-field>
+                            </div>
+                        </template>
+                    </div>
+                </template>
+                <template lwc:else>
+                    <div class="slds-grid slds-grid_align-center slds-m-vertical_x-small slds-p-around_medium">
+                        <div class="slds-col slds-p-horizontal_x-small">
+                            <lightning-icon icon-name="utility:info" size="small"></lightning-icon>
+                        </div>
+                        <div class="slds-col slds-p-horizontal_x-small">
+                            <span class="slds-text-color_weak">No {title} Record Found.</span>
+                        </div>
+                    </div>
+                </template>
+            </c-async-wrapper>
+        </div>
+    </c-formatted-wrapper>
+</template>

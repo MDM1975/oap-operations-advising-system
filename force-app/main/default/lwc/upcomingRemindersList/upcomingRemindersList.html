@@ -1,0 +1,39 @@
+<template>
+    <c-formatted-wrapper with-border="false">
+        <div slot="title">Upcoming Reminders</div>
+        <div slot="content">
+            <template lwc:if={hasReminders}>
+                <div class="slds-grid slds-grid_vertical">
+                    <template for:each={reminders} for:item="reminder">
+                        <div key={reminder.id} class="slds-box slds-grid slds-wrap slds-m-bottom_xx-small">
+                            <div class="slds-col slds-size_1-of-1">
+                                <span class="slds-text-heading_medium">Subject: </span>
+                                <span class="slds-text-heading_medium">
+                                    <c-navigation-link label={reminder.subject} page="reminder"
+                                        record-id={reminder.id}></c-navigation-link>
+                                </span>
+                            </div>
+                            <div class="slds-col slds-size_1-of-1">
+                                <span class="slds-text-heading_medium">Due: </span>
+                                <span class="slds-text-heading_medium">
+                                    <lightning-formatted-date-time
+                                        value={reminder.dueDate}></lightning-formatted-date-time>
+                                </span>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+            </template>
+            <template lwc:else>
+                <div class="slds-box slds-grid slds-grid_align-center slds-p-around_medium">
+                    <div class="slds-col slds-p-horizontal_x-small">
+                        <lightning-icon icon-name="utility:info" size="small"></lightning-icon>
+                    </div>
+                    <div class="slds-col slds-p-horizontal_x-small">
+                        <span class="slds-text-color_weak">No Reminder Records Found.</span>
+                    </div>
+                </div>
+            </template>
+        </div>
+    </c-formatted-wrapper>
+</template>

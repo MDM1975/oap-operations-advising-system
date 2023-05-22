@@ -1,0 +1,21 @@
+<template>
+    <div class="slds-grid slds-grid_vertical">
+        <div class="slds-col">
+            <div class="slds-grid slds-grid_align-spread">
+                <div class="slds-col">
+                    <span class="slds-text-heading_large">
+                        <slot name="title"></slot>
+                    </span>
+                </div>
+                <div class="slds-col">
+                    <slot name="action"></slot>
+                </div>
+            </div>
+        </div>
+        <div class="slds-col slds-m-vertical_x-small">
+            <div class={style} style="background-color: #ffffff;">
+                <slot name="content"></slot>
+            </div>
+        </div>
+    </div>
+</template>

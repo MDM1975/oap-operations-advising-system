@@ -1,0 +1,39 @@
+<template>
+    <div class="slds-grid slds-gutters slds-grid_vertical-align-center slds-grid_align-center">
+        <div class="slds-col slds-size_1-of-2">
+            <svg width="850" height="550">
+                <template for:each={bars} for:item="bar">
+                    <text key={bar.index} x={bar.value.x} y={bar.value.y} font-size="15">
+                        {bar.value.text}
+                    </text>
+                    <rect key={bar.index} x={bar.x} y={bar.y} width={bar.width} height={bar.height} fill={bar.fill}>
+                    </rect>
+                </template>
+                <template for:each={legends} for:item="legend">
+                    <text key={legend.index} x={legend.x} y={legend.y} width={legend.width} height={legend.height}
+                        font-size="15">
+                        {legend.text}
+                    </text>
+                </template>
+                <text x="285" y="550">Total Enrollments</text>
+            </svg>
+        </div>
+        <div class="slds-col slds-size_1-of-2 slds-p-top_medium">
+            <div class="slds-grid slds-gutters slds-wrap">
+                <template for:each={programs} for:item="program">
+                    <div key={program.id} class="slds-col slds-size_1-of-2">
+                        <div class="slds-box slds-grid slds-grid_vertical slds-m-vertical_small">
+                            <div class="slds-col">
+                                <c-navigation-link label={program.name} page="program"
+                                    record-id={program.id}></c-navigation-link>
+                            </div>
+                            <div class="slds-col">
+                                <span>{program.title}</span>
+                            </div>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </div>
+</template>

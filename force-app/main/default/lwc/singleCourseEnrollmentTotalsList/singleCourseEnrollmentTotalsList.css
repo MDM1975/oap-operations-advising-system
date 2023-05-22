@@ -1,0 +1,13 @@
+:host {
+    --warning-color: #ff9900be;
+    --error-color: #ff0000be;
+    --sds-c-icon-color-foreground-default: #76716B;
+}
+
+.warning {
+    background-color: var(--warning-color);
+}
+
+.error {
+    background-color: var(--error-color);
+}

@@ -1,0 +1,28 @@
+:host {
+    --transition-duration: 0.3s;
+    --transition-timing: ease-in-out;
+    --scale-up: scale(1.1);
+    --darken: brightness(0.8);
+    --field-height: 4rem;
+    --sds-c-input-color-border: #c9c9c9;
+    --sds-c-textarea-color-border: #c9c9c9;
+}
+
+.detail-field {
+    min-height: var(--field-height);
+}
+
+.edit-icon,
+.save-icon,
+.cancel-icon {
+    cursor: pointer;
+    transition: transform var(--transition-duration) var(--transition-timing),
+        filter var(--transition-duration) var(--transition-timing);
+}
+
+.edit-icon:hover,
+.save-icon:hover,
+.cancel-icon:hover {
+    transform: var(--scale-up);
+    filter: var(--darken);
+}

@@ -1,0 +1,31 @@
+:host {
+    --search-bar-height: 2rem;
+    --search-bar-width: 18rem;
+    --search-bar-padding: 0.5rem;
+    --search-bar-border-radius: 1rem;
+    --search-bar-border: 1px solid #c9c9c9;
+    --search-bar-border-active: 1px solid #23b1a9;
+    --search-bar-background-active: #ffffff;
+    --search-bar-transition: all 0.3s ease;
+}
+
+.search-bar {
+    position: relative;
+    height: var(--search-bar-height);
+    width: var(--search-bar-width);
+    padding: var(--search-bar-padding);
+    border-radius: var(--search-bar-border-radius);
+    border: var(--search-bar-border);
+    transition: var(--search-bar-transition);
+}
+
+.search-bar:focus {
+    outline: none;
+    border: var(--search-bar-border-active);
+    background-color: var(--search-bar-background-active);
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
+}
+
+.cell-value {
+    overflow-wrap: break-word;
+}

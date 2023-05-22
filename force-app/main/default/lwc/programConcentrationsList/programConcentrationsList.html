@@ -1,0 +1,32 @@
+<template>
+    <c-formatted-wrapper>
+        <div slot="title">Concentrations</div>
+        <div slot="content">
+            <template lwc:if={hasConcentrations}>
+                <ul class="slds-list_dotted">
+                    <div class="slds-grid slds-gutters slds-wrap">
+                        <template for:each={concentrations} for:item="concentration">
+                            <div key={concentration.id} class="slds-col slds-size_1-of-2">
+                                <li class="slds-item slds-p-vertical_xx-small">
+                                    <span class="slds-text-heading_small">
+                                        {concentration.name}
+                                    </span>
+                                </li>
+                            </div>
+                        </template>
+                    </div>
+                </ul>
+            </template>
+            <template lwc:else>
+                <div class="slds-grid slds-grid_align-center slds-p-around_medium">
+                    <div class="slds-col slds-p-horizontal_x-small">
+                        <lightning-icon icon-name="utility:info" size="small"></lightning-icon>
+                    </div>
+                    <div class="slds-col slds-p-horizontal_x-small">
+                        <span class="slds-text-color_weak">No Concentrations Found.</span>
+                    </div>
+                </div>
+            </template>
+        </div>
+    </c-formatted-wrapper>
+</template>

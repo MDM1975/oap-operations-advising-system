@@ -1,0 +1,13 @@
+<template>
+    <c-async-wrapper promise={programEnrollment} onresolved={handleResolved} onrejected={handleRejected}>
+        <c-related-record-list title="Notes" s-object={enrollmentNotesSObject} filter-by={filterBy} sort-by={sortBy}
+            fields={listFields} list-size={listSize}>
+            <div slot="action">
+                <lightning-button-icon icon-name="utility:add" variant="bare" size="large"
+                    onclick={handleAddNote}></lightning-button-icon>
+                <c-record-form title="New Note" s-object={enrollmentNotesSObject} fields={formFields}
+                    onsuccess={handleSuccess} size="small"></c-record-form>
+            </div>
+        </c-related-record-list>
+    </c-async-wrapper>
+</template>

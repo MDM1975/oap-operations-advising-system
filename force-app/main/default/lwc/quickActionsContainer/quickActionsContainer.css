@@ -1,0 +1,19 @@
+:host {
+    --seahawk-blue: #06215b;
+    --seahawk-green: #1a8b84;
+    --darken: brightness(0.7);
+    --slds-c-button-color-border: none;
+}
+
+.quick-action__title {
+    color: var(--seahawk-blue);
+}
+
+.quick-action__title-border {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 2px;
+    text-align: center;
+    background-color: var(--seahawk-green);
+}

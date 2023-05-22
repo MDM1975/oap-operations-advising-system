@@ -1,0 +1,11 @@
+<template>
+    <c-related-record-list title="Education Background" s-object={educationalBackgroundSObject} filter-by={filterBy}
+        sort-by={sortBy} fields={fields} list-size={listSize}>
+        <div slot="action">
+            <lightning-button-icon icon-name="utility:add" variant="bare" size="large"
+                onclick={handleAddEducationBackground}></lightning-button-icon>
+            <c-record-form title="New Education Background" s-object={educationalBackgroundSObject} fields={fields}
+                onsuccess={handleSuccess} size="medium"></c-record-form>
+        </div>
+    </c-related-record-list>
+</template>

@@ -1,0 +1,20 @@
+<template>
+    <template lwc:if={resolved}>
+        <slot></slot>
+    </template>
+    <template lwc:elseif={rejected}>
+        <div class="slds-grid slds-grid_vertical">
+            <div class="slds-col slds-align_absolute-center">
+                <lightning-icon icon-name="utility:error" size="large" variant="error"></lightning-icon>
+            </div>
+            <div class="slds-col slds-align_absolute-center">
+                <div class="slds-p-vertical_medium slds-text-color_error">Error: {errorMessage}</div>
+            </div>
+        </div>
+    </template>
+    <template lwc:else>
+        <div class="slds-align_absolute-center">
+            <lightning-spinner size="large" alternative-text="Loading"></lightning-spinner>
+        </div>
+    </template>
+</template>

@@ -1,0 +1,17 @@
+:host {
+    --transition-duration: 0.3s;
+    --transition-timing: ease-in-out;
+    --scale-up: scale(1.1);
+    --darken: brightness(0.8);
+}
+
+.delete-icon {
+    cursor: pointer;
+    transition: transform var(--transition-duration) var(--transition-timing),
+        filter var(--transition-duration) var(--transition-timing);
+}
+
+.delete-icon:hover {
+    transform: var(--scale-up);
+    filter: var(--darken);
+}

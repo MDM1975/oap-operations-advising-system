@@ -1,0 +1,15 @@
+<template>
+    <template lwc:if={isCombobox}>
+        <lightning-combobox label={field.label} placeholder={placeholder} required={isRequired} options={options}
+            variant="label-stacked" onchange={handleInputChange}></lightning-combobox>
+    </template>
+    <template lwc:elseif={isTextarea}>
+        <lightning-textarea label={field.label} max-length="255" required={isRequired} variant="label-stacked"
+            onchange={handleInputChange}></lightning-textarea>
+    </template>
+    <template lwc:else>
+        <lightning-input type={field.type} label={field.label} required={isRequired} pattern={field.pattern}
+            variant="label-stacked" max-length={field.maxlength} min-length={field.minlength}
+            onchange={handleInputChange}></lightning-input>
+    </template>
+</template>

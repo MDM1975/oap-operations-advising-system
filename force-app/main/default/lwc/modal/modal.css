@@ -1,0 +1,45 @@
+:host {
+    --transition-duration: 0.3s;
+    --transition-timing: ease-in-out;
+    --darken: brightness(0.8);
+    --close-icon-size: 4rem;
+    --close-icon-color: #ffffff;
+    --body-background-color: #ffffff;
+    --body-border-radius: 0.5rem;
+    --body-box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 1.2px, rgba(0, 0, 0, 0.06) 0px 1px 4px 1.2px;
+}
+
+.modal-container__small {
+    width: 30rem;
+}
+
+.modal-container__medium {
+    width: 50rem;
+}
+
+.modal-container__large {
+    width: 70rem;
+}
+
+.modal-body {
+    background-color: var(--body-background-color);
+    border-radius: var(--body-border-radius);
+    box-shadow: var(--body-box-shadow);
+}
+
+.close-icon {
+    cursor: pointer;
+    color: var(--close-icon-color);
+    font-size: var(--close-icon-size);
+    width: 2rem;
+    height: 2rem;
+    margin-left: auto;
+    position: relative;
+    bottom: 0.75rem;
+    transition: transform var(--transition-duration) var(--transition-timing),
+        filter var(--transition-duration) var(--transition-timing);
+}
+
+.close-icon:hover {
+    filter: var(--darken);
+}

@@ -1,0 +1,53 @@
+<template>
+    <c-formatted-wrapper with-border="false">
+        <div slot="title">Plan of Study</div>
+        <div slot="action">
+            <lightning-button-icon icon-name="utility:add" variant="bare" size="large"
+                onclick={handleAddSemester}></lightning-button-icon>
+            <c-new-planned-semester-form student-id={recordId}></c-new-planned-semester-form>
+        </div>
+        <div slot="content">
+            <c-async-wrapper promise={planOfStudy} onresolved={handleResolved} onrejected={handleRejected}>
+                <div class="slds-col slds-size_1-of-2 slds-m-vertical_small">
+                    <div class="slds-grid">
+                        <div class="slds-col">
+                            <span class="slds-text-heading_medium">Total Credits: {progress.totalCredits}</span>
+                        </div>
+                        <div class="slds-col">
+                            <span class="slds-text-heading_medium">Credits Earned: {progress.creditsEarned}</span>
+                        </div>
+                        <div class="slds-col">
+                            <span class="slds-text-heading_medium">Credits Remaining: {progress.creditsRemaining}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="slds-col">
+                    <lightning-progress-bar value={progress.percentageComplete} size="large"
+                        variant="circular"></lightning-progress-bar>
+                </div>
+                <div class="slds-col slds-m-vertical_medium">
+                    <template lwc:if={hasPlanOfStudy}>
+                        <div class="slds-grid slds-wrap">
+                            <template for:each={semesters} for:item="semester">
+                                <div key={semester.id} class="slds-col slds-p-around_xx-small slds-size_1-of-3">
+                                    <c-plan-of-study-semester-card semester={semester}></c-plan-of-study-semester-card>
+                                </div>
+                            </template>
+                        </div>
+                    </template>
+                    <template lwc:else>
+                        <div
+                            class="slds-box slds-grid slds-m-vertical_medium slds-grid_align-center slds-p-around_medium">
+                            <div class="slds-col slds-p-horizontal_x-small">
+                                <lightning-icon icon-name="utility:info" size="small"></lightning-icon>
+                            </div>
+                            <div class="slds-col slds-p-horizontal_x-small">
+                                <span class="slds-text-color_weak">No Active Plan of Study Found.</span>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+            </c-async-wrapper>
+        </div>
+    </c-formatted-wrapper>
+</template>

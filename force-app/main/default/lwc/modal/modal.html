@@ -1,0 +1,26 @@
+<template>
+    <template lwc:if={isActive}>
+        <div class="slds-modal slds-fade-in-open">
+            <div class="slds-grid slds-grid_align-center">
+                <div class="slds-grid slds-grid_vertical">
+                    <div class="slds-col slds-p-bottom_large">
+                        <div class="close-icon" onclick={handleClose}>&times;</div>
+                    </div>
+                    <div class="slds-col">
+                        <div class={style}>
+                            <template lwc:if={isLoading}>
+                                <div class="slds-align_absolute-center">
+                                    <lightning-spinner size="large" alternative-text="Loading"></lightning-spinner>
+                                </div>
+                            </template>
+                            <div class="slds-p-around_medium">
+                                <slot></slot>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+</template>
