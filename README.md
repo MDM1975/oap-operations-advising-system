@@ -1,5 +1,11 @@
 # OAP Operations and Advising System
-The OAP Operations and Advising System is a comprehensive system designed to streamline and enhance the operations and advising processes of the OAP (Operations and Advising Programs) programs. It provides a centralized platform for managing student data, program enrollments, academic standing, and related activities.
+The OAP Operations and Advising System is a Salesforce-based system that supports the operations and advising processes of the Online Accelerated Programs (OAP) at the University of North Carolina Wilmington. The system facilitates the management of program enrollments, operations and advising processes, and data conversion. It is built on the Salesforce Lightning Platform, utilizing a microservices architecture.
+
+### Future-Proof Design
+Central to the OAP Operations and Advising System's design philosophy is prioritizing long-term efficiency and organic evolution. The system has been designed to lay a solid foundation for future growth, providing a seamless path for integrating novel features and functionalities as needs evolve. As a result, the system promises resilience and adaptability, standing firm in the face of changing demands and evolving operational and academic requirements.
+
+### Commitment to Excellence
+The ultimate aim of the OAP Operations and Advising System is to support OAP in its drive to achieve excellence in operations and advising. The system is steadfast in its commitment to upholding the highest academic and operational integrity standards. This persistent commitment ensures that our system continues to serve the OAP community effectively, fostering an environment that optimizes academic operations and creates a rewarding and impactful learning experience for all students.
 
 ## Features
 * Program Enrollments: The system enables the management of program enrollments, including the creation, update, and deletion of program enrollment records. It tracks essential information such as student details, program information, enrollment status, and academic standing.
@@ -15,26 +21,24 @@ The OAP Operations and Advising System is a comprehensive system designed to str
 * User Interface: The system's user interface is built using Lightning Web Components (LWC) and follows the guidelines and patterns of the Lightning Design System. LWC provides a modern, responsive interface, ensuring an intuitive and consistent user experience.
 
 ## System Design
-### Entity Relationship Diagram
-
-<img src="docs/domain-class-diagram-with-attr.png" alt="Entity Relationship Diagram" />
+### **Entity Relationship Diagram**
 
 The entity-relationship diagram (ERD) showcases the relationships between entities in the OAP Operations and Advising System. It visualizes how different entities, such as Program Enrollment, Student, Case, and Academic Standing, are connected and the attributes associated with each entity.
 
-### Domain Class Diagram
+<img src="docs/modeling/entity-relationship-diagram/entity-relationship-diagram.png" alt="Entity Relationship Diagram" />
 
-<img src="docs/entity-relationship-diagram-with-attr.png" alt="Entity Relationship Diagram" />
-
+### **Domain Class Diagram**
 The domain class diagram illustrates the classes and their relationships in the OAP Operations and Advising System. It represents various entities and concepts in the domain, such as Program Enrollment, Student, Academic Standing, Case, and more. The diagram includes the attributes associated with each class, providing a comprehensive view of the system's data model.
 
-### Service Diagram
+<img src="docs/modeling/domain-class-diagram/domain-class-diagram.png" alt="Entity Relationship Diagram" />
 
-<img src="docs/service-diagram.png" alt="Entity Relationship Diagram" />
-
+### **Service Diagram**
 The service diagram provides an overview of the system's service layer architecture. It demonstrates the interactions between different services within the OAP Operations and Advising System. The diagram shows how services like Program Enrollment Service, Case Service, and Academic Standing Service communicate with each other to perform operations and fulfill the system's functionality.
 
-### Trigger Diagram
+<img src="docs/modeling/service-diagram/service-diagram.png" alt="Entity Relationship Diagram" />
 
-<img src="docs/trigger-diagram.png" alt="Entity Relationship Diagram" />
 
+### **Trigger Diagram**
 The trigger diagram illustrates the trigger logic and its relationship with other components in the OAP Operations and Advising System. It visualizes how triggers, such as Program Enrollment Trigger and Academic Standing Trigger, interact with the Trigger Manager and Trigger Handler components. The diagram showcases the flow of trigger events and the execution of trigger logic in the system.
+
+<img src="docs/modeling/trigger-diagram/trigger-diagram.png" alt="Entity Relationship Diagram" />
